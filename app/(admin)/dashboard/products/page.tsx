@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { PlusCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/lib/prisma/client'
 import { ProductsTable } from '@/components/admin/ProductsTable'
 
 export default async function AdminProductsPage() {
