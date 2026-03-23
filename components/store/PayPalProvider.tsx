@@ -2,7 +2,7 @@
 
 import { PayPalProvider } from '@paypal/react-paypal-js/sdk-v6'
 
-export function PayPalProvider({ children }: { children: React.ReactNode }) {
+export function PayPalsProvider({ children }: { children: React.ReactNode }) {
   return (
     <PayPalProvider
       clientId={process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!}

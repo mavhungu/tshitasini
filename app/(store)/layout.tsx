@@ -1,4 +1,4 @@
-// import { PayPalProvider } from '@/components/store/PayPalProvider'
+// import { PayPalsProvider } from '@/components/store/PayPalProvider'
 import Navbar from '@/components/store/Navbar'
 import Footer from '@/components/store/Footer'
 
