@@ -60,7 +60,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
     setValue,
     watch,
     formState: { errors },
-  } = useForm<FormInput, any, FormOutput>({
+  } = useForm<FormInput, never, FormOutput>({
     resolver: zodResolver(productSchema),
     defaultValues: initialData ?? {
       name: '',
@@ -75,7 +75,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
   const isActive = watch('isActive')
   const nameValue = watch('name')
-  const images = watch('images')
+  const images = watch('images') ?? []
 
   const slugPreview = nameValue
     ? nameValue.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
