@@ -43,7 +43,8 @@ const checkoutSchema = z.object({
   paymentMethod: z.enum(['STRIPE', 'PAYPAL']),
 })
 
-type CheckoutFormData = z.infer<typeof checkoutSchema>
+type CheckoutFormInput = z.input<typeof checkoutSchema>
+type CheckoutFormData = z.output<typeof checkoutSchema>
 
 // Reusable field error display
 function FieldError({ message }: { message?: string }) {
@@ -68,7 +69,7 @@ export function CheckoutForm() {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<CheckoutFormData>({
+  } = useForm<CheckoutFormInput, never, CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       country: 'South Africa',
