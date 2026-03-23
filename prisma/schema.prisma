@@ -5,9 +5,112 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  output   = "../lib/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────────────────────
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  STRIPE
+  PAYPAL
+}
+
+// ─────────────────────────────────────────────────────────────
+// Product
+// ─────────────────────────────────────────────────────────────
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String
+  price       Decimal  @db.Decimal(10, 2)
+  stock       Int
+  category    String
+  images      String[]
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([isActive])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Order
+// ─────────────────────────────────────────────────────────────
+
+model Order {
+  id            String        @id @default(cuid())
+  status        OrderStatus   @default(PENDING)
+  totalAmount   Decimal       @db.Decimal(10, 2)
+  paymentMethod PaymentMethod
+  /// Populated after payment provider confirms the charge
+  paymentId     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items           OrderItem[]
+  shippingAddress ShippingAddress?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────
+// OrderItem  — snapshot of product data at purchase time
+// ─────────────────────────────────────────────────────────────
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String
+  /// Product name snapshotted at order time
+  productName  String
+  /// Primary product image URL snapshotted at order time
+  productImage String
+  quantity     Int
+  unitPrice    Decimal @db.Decimal(10, 2)
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// ShippingAddress  — one-to-one with Order
+// ─────────────────────────────────────────────────────────────
+
+model ShippingAddress {
+  id         String @id @default(cuid())
+  orderId    String @unique
+  firstName  String
+  lastName   String
+  email      String
+  phone      String
+  address    String
+  city       String
+  province   String
+  postalCode String
+  country    String
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
