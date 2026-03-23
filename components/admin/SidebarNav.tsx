@@ -5,7 +5,6 @@ import {
   LayoutDashboard,
   Package,
   ShoppingCart,
-  PlusCircle,
   LogOut,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -15,12 +14,6 @@ const navItems = [
     label: 'Overview',
     href: '/dashboard',
     icon: LayoutDashboard,
-    exact: true,
-  },
-  {
-    label: 'Add Product',
-    href: '/dashboard/products/new',
-    icon: PlusCircle,
     exact: true,
   },
   {
