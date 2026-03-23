@@ -1,4 +1,4 @@
-import WorkOS from '@workos-inc/node'
+import { WorkOS } from '@workos-inc/node'
 
 // WorkOS client singleton
 export const workos = new WorkOS(process.env.WORKOS_API_KEY!)
