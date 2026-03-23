@@ -6,7 +6,6 @@ export function PayPalsProvider({ children }: { children: React.ReactNode }) {
   return (
     <PayPalProvider
       clientId={process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!}
-      currency="ZAR"
       pageType="checkout"
       components={['paypal-payments']}
     >
