@@ -151,8 +151,9 @@ export function CheckoutForm() {
     }
   }
 
-  const onSubmit = (data: CheckoutFormData) => {
-    if (data.paymentMethod === 'STRIPE') onStripeSubmit(data)
+  const onSubmit = async (data: CheckoutFormData) => {
+    if (data.paymentMethod === 'STRIPE') 
+      await onStripeSubmit(data)
     // PayPal is handled separately by PayPalButtons callbacks
   }
 
@@ -377,7 +378,7 @@ export function CheckoutForm() {
                   const values = getValues()
                   const orderId = await createInternalOrder({
                     ...values,
-                    country: value.contry ?? 'South Africa',
+                    country: values.contry ?? 'South Africa',
                   })
                   internalOrderIdRef.current = orderId
 
