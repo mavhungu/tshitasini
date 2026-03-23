@@ -375,7 +375,10 @@ export function CheckoutForm() {
 
                   validationErrorRef.current = null
                   const values = getValues()
-                  const orderId = await createInternalOrder(values)
+                  const orderId = await createInternalOrder({
+                    ...values,
+                    country: value.contry ?? 'South Africa',
+                  })
                   internalOrderIdRef.current = orderId
 
                   // Create PayPal order on server using DB total
