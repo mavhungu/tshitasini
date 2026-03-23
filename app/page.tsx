@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { cacheTag, cacheLife } from 'next/cache'
 import {
   ArrowRight, Award, Truck, Users,
   Headphones, ShieldCheck, Hand, Wind,
@@ -60,10 +59,7 @@ const categories = [
 ]
 
 async function FeaturedProducts() {
-  'use cache'
-  cacheTag('products')
-  cacheLife('hours')
-
+  
   const products = await prisma.product.findMany({
     where: { isActive: true },
     orderBy: { createdAt: 'desc' },

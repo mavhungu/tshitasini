@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import { cacheTag, cacheLife } from 'next/cache'
 import { Package } from 'lucide-react'
 import { prisma } from '@/lib/prisma/client'
-import { ProductCard, ProductCardSkeleton } from '@/components/store/ProductCard'
+import { ProductCard } from '@/components/store/ProductCard'
 import { ProductFilters } from '@/components/store/ProductFilters'
 
 export const metadata: Metadata = {
@@ -12,8 +11,7 @@ export const metadata: Metadata = {
     'Browse our full range of certified PPE products including surgical gloves, masks, gowns, eye protection and more.',
   openGraph: {
     title: 'Products | Tshitasini Enviro Solutions',
-    description:
-      'Browse certified PPE for healthcare and safety professionals.',
+    description: 'Browse certified PPE for healthcare and safety professionals.',
     images: [{ url: '/og-image.png' }],
   },
 }
@@ -24,20 +22,6 @@ interface ProductsPageProps {
     sort?: string
     search?: string
   }>
-}
-
-async function getCategories(): Promise<string[]> {
-  'use cache'
-  cacheTag('products')
-  cacheLife('hours')
-
-  const raw = await prisma.product.findMany({
-    where: { isActive: true },
-    select: { category: true },
-    distinct: ['category'],
-    orderBy: { category: 'asc' },
-  })
-  return raw.map((p) => p.category)
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
@@ -61,14 +45,21 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       ? { price: 'desc' as const }
       : { createdAt: 'desc' as const }
 
-  const [products, categories] = await Promise.all([
+  const [rawProducts, rawCategories] = await Promise.all([
     prisma.product.findMany({ where, orderBy }),
-    getCategories(),
+    prisma.product.findMany({
+      where: { isActive: true },
+      select: { category: true },
+      distinct: ['category'],
+      orderBy: { category: 'asc' },
+    }),
   ])
+
+  const products = rawProducts.map((p) => ({ ...p, price: Number(p.price) }))
+  const categories = rawCategories.map((p) => p.category)
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      {/* Header */}
       <div className="mb-8">
         <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
           Catalogue
@@ -80,7 +71,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Filters sidebar */}
         <aside className="w-full lg:w-64 shrink-0">
           <Suspense
             fallback={
@@ -96,7 +86,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           </Suspense>
         </aside>
 
-        {/* Product grid */}
         <div className="flex-1 min-w-0">
           <p className="text-sm text-muted-foreground mb-6">
             Showing{' '}
@@ -127,10 +116,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={{ ...product, price: Number(product.price) }}
-                />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           )}

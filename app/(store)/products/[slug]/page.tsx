@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { cacheTag, cacheLife } from 'next/cache'
 import { ArrowLeft, CheckCircle, XCircle } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -14,36 +13,9 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-// ✅ Cached product fetch — tagged so revalidateTag('products')
-// busts it when admin creates/edits/deletes a product
-async function getProduct(slug: string) {
-  'use cache'
-  cacheTag('products')
-  cacheLife('hours')
-
-  return prisma.product.findUnique({ where: { slug } })
-}
-
-// ✅ Cached related products fetch
-async function getRelatedProducts(category: string, excludeId: string) {
-  'use cache'
-  cacheTag('products')
-  cacheLife('hours')
-
-  return prisma.product.findMany({
-    where: {
-      isActive: true,
-      category,
-      NOT: { id: excludeId },
-    },
-    take: 4,
-    orderBy: { createdAt: 'desc' },
-  })
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const product = await getProduct(slug)
+  const product = await prisma.product.findUnique({ where: { slug } })
 
   if (!product) return { title: 'Product Not Found' }
 
@@ -64,7 +36,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// ✅ Pre-generate static paths for all active products at build time
 export async function generateStaticParams() {
   const products = await prisma.product.findMany({
     where: { isActive: true },
@@ -75,18 +46,34 @@ export async function generateStaticParams() {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params
-  const product = await getProduct(slug)
+
+  const [product, related] = await Promise.all([
+    prisma.product.findUnique({ where: { slug } }),
+    prisma.product.findMany({
+      where: { isActive: true },
+      take: 4,
+      orderBy: { createdAt: 'desc' },
+    }),
+  ])
 
   if (!product) notFound()
 
-  const related = await getRelatedProducts(product.category, product.id)
+  // Fetch related separately now we have the product category
+  const relatedProducts = await prisma.product.findMany({
+    where: {
+      isActive: true,
+      category: product.category,
+      NOT: { id: product.id },
+    },
+    take: 4,
+    orderBy: { createdAt: 'desc' },
+  })
 
   const price = Number(product.price)
   const inStock = product.stock > 0
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      {/* Breadcrumb */}
       <Link
         href="/products"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
@@ -96,15 +83,10 @@ export default async function ProductDetailPage({ params }: Props) {
         Back to Products
       </Link>
 
-      {/* Main product layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-16">
-
-        {/* Left — image gallery */}
         <ProductImageGallery images={product.images} name={product.name} />
 
-        {/* Right — product info */}
         <div className="flex flex-col">
-          {/* Badges */}
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <Badge className="bg-primary text-primary-foreground">
               {product.category}
@@ -128,19 +110,16 @@ export default async function ProductDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* Name */}
           <h1 className="text-3xl font-bold text-foreground mb-4 leading-tight">
             {product.name}
           </h1>
 
-          {/* Price */}
           <p className="text-4xl font-bold text-primary mb-6">
             R {price.toFixed(2)}
           </p>
 
           <Separator className="mb-6" />
 
-          {/* Description */}
           <div className="mb-8">
             <h2 className="font-semibold text-foreground mb-2">Description</h2>
             <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -148,7 +127,6 @@ export default async function ProductDetailPage({ params }: Props) {
             </p>
           </div>
 
-          {/* Add to cart — client component island */}
           <AddToCart
             product={{
               id: product.id,
@@ -162,7 +140,6 @@ export default async function ProductDetailPage({ params }: Props) {
 
           <Separator className="my-6" />
 
-          {/* Payment badges */}
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground">
               Secure payment via
@@ -177,8 +154,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Related products */}
-      {related.length > 0 && (
+      {relatedProducts.length > 0 && (
         <>
           <Separator className="mb-12" />
           <div>
@@ -191,7 +167,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {related.map((p) => (
+              {relatedProducts.map((p) => (
                 <ProductCard
                   key={p.id}
                   product={{ ...p, price: Number(p.price) }}

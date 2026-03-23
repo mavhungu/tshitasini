@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 import slugify from 'slugify'
 import { prisma } from '@/lib/prisma/client'
@@ -25,7 +24,6 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     const body = await req.json()
     const data = updateProductSchema.parse(body)
 
-    // Re-generate slug if name changed
     let slug: string | undefined
     if (data.name) {
       slug = slugify(data.name, { lower: true, strict: true })
@@ -39,9 +37,6 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       where: { id },
       data: { ...data, ...(slug && { slug }) },
     })
-
-    // ✅ Bust cache — reflects changes on store pages immediately
-    revalidateTag('products')
 
     return NextResponse.json(product)
   } catch (error) {
@@ -62,7 +57,6 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   const { id } = await params
 
   try {
-    // Block delete if product has any non-cancelled orders
     const activeOrders = await prisma.orderItem.count({
       where: {
         productId: id,
@@ -82,9 +76,6 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
     }
 
     await prisma.product.delete({ where: { id } })
-
-    // ✅ Bust cache — removes product from store pages
-    revalidateTag('products')
 
     return NextResponse.json({ success: true })
   } catch {
