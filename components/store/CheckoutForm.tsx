@@ -378,7 +378,7 @@ export function CheckoutForm() {
                   const values = getValues()
                   const orderId = await createInternalOrder({
                     ...values,
-                    country: values.contry ?? 'South Africa',
+                    country: values.country ?? 'South Africa',
                   })
                   internalOrderIdRef.current = orderId
 
