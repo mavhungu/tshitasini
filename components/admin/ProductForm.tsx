@@ -35,7 +35,9 @@ const productSchema = z.object({
   isActive: z.boolean().default(true),
 })
 
-type ProductFormData = z.infer<typeof productSchema>
+type FormInput = z.input<typeof productSchema>
+type FormOutput = z.output<typeof productSchema> 
+
 
 interface ProductFormProps {
   initialData?: ProductFormData & { id: string }
@@ -57,7 +59,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
     setValue,
     watch,
     formState: { errors },
-  } = useForm<ProductFormData>({
+  } = useForm<FormInput, any, FormOutput>({
     resolver: zodResolver(productSchema),
     defaultValues: initialData ?? {
       name: '',
