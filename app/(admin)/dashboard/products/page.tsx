@@ -10,9 +10,15 @@ export default async function AdminProductsPage() {
   const { user } = await withAuth()
   if (!user) redirect('/')
 
-  const products = await prisma.product.findMany({
+
+  const rawProducts = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
   })
+
+  const products = rawProducts.map((p) => ({
+    ...p,
+    price: Number(p.price),
+  }))
 
   return (
     <div className="space-y-6">

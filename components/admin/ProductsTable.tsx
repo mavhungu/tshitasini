@@ -144,7 +144,7 @@ export function ProductsTable({ products }: { products: Product[] }) {
                 </TableCell>
 
                 <TableCell className="font-semibold text-sm text-foreground">
-                  R {Number(product.price).toFixed(2)}
+                  R {product.price.toFixed(2)}
                 </TableCell>
 
                 <TableCell className="hidden md:table-cell">
