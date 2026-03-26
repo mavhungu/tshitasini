@@ -36,13 +36,12 @@ export default async function SuccessPage({ searchParams }: Props) {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-2xl">
-      {/* Clear cart on mount */}
       <ClearCart />
 
       {/* Success header */}
       <div className="text-center mb-10">
-        <div className="inline-flex p-4 bg-green-100 rounded-full mb-4">
-          <CheckCircle className="h-14 w-14 text-green-600" />
+        <div className="inline-flex p-4 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
+          <CheckCircle className="h-14 w-14 text-green-600 dark:text-green-400" />
         </div>
         <h1 className="text-3xl font-bold text-foreground mb-2">
           Order Confirmed!
@@ -54,7 +53,7 @@ export default async function SuccessPage({ searchParams }: Props) {
           </span>
           ! Your order has been placed successfully.
         </p>
-        <div className="mt-3 inline-flex items-center gap-2 bg-zinc-100 rounded-full px-4 py-1.5">
+        <div className="mt-3 inline-flex items-center gap-2 bg-muted rounded-full px-4 py-1.5">
           <span className="text-xs text-muted-foreground">Order Reference:</span>
           <span className="text-xs font-mono font-bold text-foreground">
             {order.id.slice(0, 12).toUpperCase()}
@@ -63,7 +62,7 @@ export default async function SuccessPage({ searchParams }: Props) {
       </div>
 
       {/* Order items */}
-      <div className="bg-white rounded-xl border p-6 mb-6">
+      <div className="bg-card border border-border rounded-xl p-6 mb-6">
         <div className="flex items-center gap-2 mb-4">
           <Package className="h-5 w-5 text-primary" />
           <h2 className="font-bold text-foreground">Items Ordered</h2>
@@ -76,7 +75,7 @@ export default async function SuccessPage({ searchParams }: Props) {
                 {item.productName}{' '}
                 <span className="text-muted-foreground">× {item.quantity}</span>
               </span>
-              <span className="font-medium">
+              <span className="font-medium text-foreground">
                 R {(Number(item.unitPrice) * item.quantity).toFixed(2)}
               </span>
             </div>
@@ -85,8 +84,8 @@ export default async function SuccessPage({ searchParams }: Props) {
 
         <Separator className="my-4" />
 
-        <div className="flex justify-between font-bold">
-          <span>Total Paid</span>
+       <div className="flex justify-between font-bold">
+          <span className="text-foreground">Total Paid</span>
           <span className="text-primary">R {total.toFixed(2)}</span>
         </div>
 
@@ -112,7 +111,7 @@ export default async function SuccessPage({ searchParams }: Props) {
 
       {/* Shipping address */}
       {order.shippingAddress && (
-        <div className="bg-white rounded-xl border p-6 mb-8">
+        <div className="bg-card border border-border rounded-xl p-6 mb-8">
           <div className="flex items-center gap-2 mb-4">
             <MapPin className="h-5 w-5 text-primary" />
             <h2 className="font-bold text-foreground">Delivering To</h2>
@@ -127,7 +126,8 @@ export default async function SuccessPage({ searchParams }: Props) {
               {order.shippingAddress.postalCode}
             </p>
             <p>{order.shippingAddress.country}</p>
-            <p className="pt-1">{order.shippingAddress.email}</p>
+            <Separator className="my-2" />
+            <p>{order.shippingAddress.email}</p>
             <p>{order.shippingAddress.phone}</p>
           </div>
         </div>

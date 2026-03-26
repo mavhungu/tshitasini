@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import { Leaf, Phone, Mail, MapPin, Clock } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
@@ -19,7 +20,7 @@ const categories = [
 ]
 
 async function getCurrentYear() {
-  return new Date().getFullYear()
+  return new Date().getUTCFullYear()
 }
 
 export default async function Footer() {

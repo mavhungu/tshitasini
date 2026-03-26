@@ -168,7 +168,7 @@ export function CheckoutForm() {
       >
 
         {/* Contact Info */}
-        <div className="bg-white rounded-xl border p-6 space-y-4">
+        <div className="bg-card border border-border rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-bold text-foreground">Contact Information</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -220,7 +220,7 @@ export function CheckoutForm() {
         </div>
 
         {/* Shipping Address */}
-        <div className="bg-white rounded-xl border p-6 space-y-4">
+        <div className="bg-card border border-border rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-bold text-foreground">Shipping Address</h2>
 
           <div>
@@ -289,7 +289,7 @@ export function CheckoutForm() {
         </div>
 
         {/* Payment Method */}
-        <div className="bg-white rounded-xl border p-6 space-y-4">
+        <div className="bg-card border border-border rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-bold text-foreground">Payment Method</h2>
 
           <RadioGroup
@@ -299,10 +299,10 @@ export function CheckoutForm() {
             }
             className="space-y-3"
           >
-            {/* Stripe option */}
+            {/* Stripe */}
             <label
               htmlFor="stripe"
-              className="flex items-center gap-4 p-4 rounded-lg border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+              className="flex items-center gap-4 p-4 rounded-lg border border-border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
             >
               <RadioGroupItem value="STRIPE" id="stripe" />
               <CreditCard className="h-5 w-5 text-primary shrink-0" />
@@ -320,14 +320,14 @@ export function CheckoutForm() {
             {/* PayPal option */}
             <label
               htmlFor="paypal"
-              className="flex items-center gap-4 p-4 rounded-lg border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+              className="flex items-center gap-4 p-4 rounded-lg border border-border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
             >
               <RadioGroupItem value="PAYPAL" id="paypal" />
               <Wallet className="h-5 w-5 text-primary shrink-0" />
               <div>
                 <p className="font-medium text-foreground">Pay with PayPal</p>
                 <p className="text-xs text-muted-foreground">
-                  Pay using your PayPal account or PayPal balance
+                  Pay using your PayPal account or balance
                 </p>
               </div>
               <span className="ml-auto text-xs font-bold text-white bg-[#003087] px-2 py-1 rounded">
@@ -436,17 +436,21 @@ export function CheckoutForm() {
 
       {/* ── Order Summary Sidebar ─────────────── */}
       <div className="lg:col-span-2">
-        <div className="bg-white rounded-xl border p-6 sticky top-24">
-          <h2 className="text-lg font-bold text-foreground mb-4">Order Summary</h2>
+        <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
+          <h2 className="text-lg font-bold text-foreground mb-4">
+            Order Summary
+          </h2>
 
           <div className="space-y-3 mb-4">
             {items.map((item) => (
               <div key={item.id} className="flex justify-between text-sm">
                 <span className="text-muted-foreground line-clamp-1 max-w-[60%]">
                   {item.name}{' '}
-                  <span className="text-foreground font-medium">× {item.quantity}</span>
+                  <span className="text-foreground font-medium">
+                    × {item.quantity}
+                  </span>
                 </span>
-                <span className="font-medium shrink-0">
+                <span className="font-medium text-foreground shrink-0">
                   R {(item.price * item.quantity).toFixed(2)}
                 </span>
               </div>
@@ -458,14 +462,18 @@ export function CheckoutForm() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span>R {totalPrice.toFixed(2)}</span>
+              <span className="text-foreground">
+                R {totalPrice.toFixed(2)}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Shipping</span>
               {shipping === 0 ? (
                 <span className="text-green-600 font-medium">Free</span>
               ) : (
-                <span>R {shipping.toFixed(2)}</span>
+                <span className="text-foreground">
+                  R {shipping.toFixed(2)}
+                </span>
               )}
             </div>
           </div>
@@ -473,7 +481,7 @@ export function CheckoutForm() {
           <Separator className="my-4" />
 
           <div className="flex justify-between font-bold text-lg">
-            <span>Total</span>
+            <span className="text-foreground">Total</span>
             <span className="text-primary">R {total.toFixed(2)}</span>
           </div>
 

@@ -6,7 +6,9 @@ export default function StoreLayout({ children,}: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-        <main className="flex-1">{children}</main>
+        {/* <PayPalsProvider> */}
+          <main className="flex-1 pt-16">{children}</main>
+        {/* </PayPalsProvider> */}
       <Footer />
     </div>
   )

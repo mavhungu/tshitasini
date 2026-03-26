@@ -20,7 +20,6 @@ export default function CartPage() {
 
   useEffect(() => setMounted(true), [])
 
-  // Hydration guard — Zustand reads localStorage on client only
   if (!mounted) {
     return (
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -38,14 +37,15 @@ export default function CartPage() {
     )
   }
 
-  // Empty cart state
   if (items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center text-center">
         <div className="p-6 bg-primary/10 rounded-full mb-6">
           <ShoppingBag className="h-14 w-14 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">
+          Your cart is empty
+        </h2>
         <p className="text-muted-foreground mb-8 max-w-sm">
           Looks like you haven&apos;t added any products yet. Browse our
           catalogue to get started.
@@ -73,15 +73,16 @@ export default function CartPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
         {/* Cart items */}
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex gap-4 bg-white rounded-xl border p-4"
+              className="flex gap-4 bg-card border border-border rounded-xl p-4"
             >
               {/* Image */}
-              <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-zinc-100">
+              <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-muted">
                 {item.image ? (
                   <Image
                     src={item.image}
@@ -91,7 +92,7 @@ export default function CartPage() {
                     sizes="96px"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center text-zinc-400 text-xs text-center px-1">
+                  <div className="flex h-full items-center justify-center text-muted-foreground text-xs text-center px-1">
                     No image
                   </div>
                 )}
@@ -132,7 +133,7 @@ export default function CartPage() {
                     >
                       <Minus className="h-3 w-3" />
                     </Button>
-                    <span className="w-8 text-center text-sm font-semibold tabular-nums">
+                    <span className="w-8 text-center text-sm font-semibold tabular-nums text-foreground">
                       {item.quantity}
                     </span>
                     <Button
@@ -159,7 +160,7 @@ export default function CartPage() {
 
         {/* Order summary */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-xl border p-6 sticky top-24">
+          <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
             <h2 className="text-lg font-bold text-foreground mb-4">
               Order Summary
             </h2>
@@ -167,14 +168,18 @@ export default function CartPage() {
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-medium">R {totalPrice.toFixed(2)}</span>
+                <span className="font-medium text-foreground">
+                  R {totalPrice.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Shipping</span>
                 {shipping === 0 ? (
                   <span className="font-medium text-green-600">Free</span>
                 ) : (
-                  <span className="font-medium">R {shipping.toFixed(2)}</span>
+                  <span className="font-medium text-foreground">
+                    R {shipping.toFixed(2)}
+                  </span>
                 )}
               </div>
               {shipping > 0 && (
@@ -187,7 +192,7 @@ export default function CartPage() {
             <Separator className="my-4" />
 
             <div className="flex justify-between font-bold text-lg mb-6">
-              <span>Total</span>
+              <span className="text-foreground">Total</span>
               <span className="text-primary">R {total.toFixed(2)}</span>
             </div>
 

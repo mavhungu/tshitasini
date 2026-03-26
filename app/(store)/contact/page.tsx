@@ -51,22 +51,6 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <Card>
-                <CardContent className="p-6 md:p-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-1">
-                    Send Us a Message
-                  </h2>
-                  <p className="text-muted-foreground mb-6">
-                    Fill in the form below and we will get back to you
-                    within one business day.
-                  </p>
-                  <ContactForm />
-                </CardContent>
-              </Card>
-            </div>
-
             {/* Info + Map */}
             <div className="space-y-4">
               <Card>
@@ -95,7 +79,7 @@ export default function ContactPage() {
               </Card>
 
               {/* Map placeholder */}
-              <Card className="overflow-hidden">
+              {/* <Card className="overflow-hidden">
                 <div className="bg-muted h-48 flex flex-col items-center justify-center text-muted-foreground gap-2">
                   <MapPin className="h-8 w-8 text-primary" />
                   <p className="text-sm font-medium text-foreground">
@@ -105,6 +89,22 @@ export default function ContactPage() {
                     Gauteng, South Africa
                   </p>
                 </div>
+              </Card> */}
+            </div>
+
+            {/* Form */}
+            <div className="lg:col-span-2">
+              <Card>
+                <CardContent className="p-6 md:p-8">
+                  <h2 className="text-2xl font-bold text-foreground mb-1">
+                    Send Us a Message
+                  </h2>
+                  <p className="text-muted-foreground mb-6">
+                    Fill in the form below and we will get back to you
+                    within one business day.
+                  </p>
+                  <ContactForm />
+                </CardContent>
               </Card>
             </div>
 
