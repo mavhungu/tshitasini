@@ -79,80 +79,84 @@ export default function CartPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex gap-4 bg-card border border-border rounded-xl p-4"
+              className="bg-card border border-border rounded-xl p-4"
             >
-              {/* Image */}
-              <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-muted">
-                {item.image ? (
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-muted-foreground text-xs text-center px-1">
-                    No image
-                  </div>
-                )}
-              </div>
-
-              {/* Details */}
-              <div className="flex-1 min-w-0">
-                <div className="flex justify-between gap-2">
-                  <Link
-                    href={`/products/${item.slug}`}
-                    className="font-semibold text-foreground hover:text-primary transition-colors line-clamp-2"
-                  >
-                    {item.name}
-                  </Link>
-                  <button
-                    onClick={() => removeItem(item.id)}
-                    className="shrink-0 text-muted-foreground hover:text-destructive transition-colors p-1"
-                    aria-label={`Remove ${item.name} from cart`}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+              {/* Top row — image + name + delete */}
+              <div className="flex gap-3">
+                {/* Image */}
+                <div className="relative w-20 h-20 shrink-0 rounded-lg overflow-hidden bg-muted">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-muted-foreground text-xs text-center px-1">
+                      No image
+                    </div>
+                  )}
                 </div>
 
-                <p className="text-primary font-bold mt-1">
-                  R {item.price.toFixed(2)}
-                </p>
-
-                <div className="flex items-center justify-between mt-3">
-                  {/* Quantity stepper */}
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8"
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      disabled={item.quantity <= 1}
-                      aria-label="Decrease quantity"
+                {/* Name + price + delete */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <Link
+                      href={`/products/${item.slug}`}
+                      className="font-semibold text-foreground hover:text-primary transition-colors line-clamp-2 text-sm leading-snug"
                     >
-                      <Minus className="h-3 w-3" />
-                    </Button>
-                    <span className="w-8 text-center text-sm font-semibold tabular-nums text-foreground">
-                      {item.quantity}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8"
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      disabled={item.quantity >= item.stock}
-                      aria-label="Increase quantity"
+                      {item.name}
+                    </Link>
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="shrink-0 text-muted-foreground hover:text-destructive transition-colors p-1 mt-0.5"
+                      aria-label={`Remove ${item.name} from cart`}
                     >
-                      <Plus className="h-3 w-3" />
-                    </Button>
+                      <Trash2 className="h-4 w-4" />
+                    </button>
                   </div>
-
-                  {/* Line total */}
-                  <p className="font-bold text-foreground">
-                    R {(item.price * item.quantity).toFixed(2)}
+                  <p className="text-primary font-bold mt-1 text-sm">
+                    R {item.price.toFixed(2)}
                   </p>
                 </div>
+              </div>
+
+              {/* Bottom row — quantity stepper + line total */}
+              {/* Separated from top row to avoid cramping on mobile */}
+              <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
+                {/* Quantity stepper */}
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 shrink-0"
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    disabled={item.quantity <= 1}
+                    aria-label="Decrease quantity"
+                  >
+                    <Minus className="h-3 w-3" />
+                  </Button>
+                  <span className="w-8 text-center text-sm font-semibold tabular-nums text-foreground">
+                    {item.quantity}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 shrink-0"
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    disabled={item.quantity >= item.stock}
+                    aria-label="Increase quantity"
+                  >
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                </div>
+
+                {/* Line total — always on same row as stepper */}
+                <p className="font-bold text-foreground text-sm shrink-0">
+                  R {(item.price * item.quantity).toFixed(2)}
+                </p>
               </div>
             </div>
           ))}
