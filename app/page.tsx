@@ -1,21 +1,22 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import {
   ArrowRight, Award, Truck, Users,
   Headphones, ShieldCheck, Hand, Wind,
   Shirt, Eye, Shield, Footprints,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import { HeroCarousel } from '@/components/store/HeroCarousel'
 import { ProductCard, ProductCardSkeleton } from '@/components/store/ProductCard'
 import Navbar from '@/components/store/Navbar'
 import Footer from '@/components/store/Footer'
 import { prisma } from '@/lib/prisma/client'
+import Autoplay from "embla-carousel-autoplay"
 
 export const metadata: Metadata = {
-  title:
-    'Tshitasini Enviro Solutions — Quality PPE & Medical Supplies',
+  title: 'Tshitasini Enviro Solutions — Quality PPE & Medical Supplies',
   description:
     'Tshitasini Enviro Solutions supplies certified PPE products including surgery gloves, masks, gowns, and more to healthcare facilities across South Africa.',
   openGraph: {
@@ -59,7 +60,6 @@ const categories = [
 ]
 
 async function FeaturedProducts() {
-  
   const products = await prisma.product.findMany({
     where: { isActive: true },
     orderBy: { createdAt: 'desc' },
@@ -83,50 +83,12 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
 
-        {/* ── Hero ─────────────────────────────── */}
-        {/* Intentionally keeps white text — green gradient is always dark enough */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-primary to-green-800 text-white">
-          <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
-            <div className="max-w-2xl">
-              <Badge className="mb-4 bg-white/20 text-white border-white/30 hover:bg-white/30">
-                🇿🇦 Proudly South African PPE Supplier
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Quality PPE for <br />
-                <span className="text-green-200">Safer Workplaces</span>
-              </h1>
-              <p className="text-lg text-green-100 mb-8 leading-relaxed max-w-lg">
-                Tshitasini Enviro Solutions supplies certified personal protective
-                equipment to healthcare facilities, clinics, and businesses
-                across South Africa.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-primary hover:bg-green-50 font-semibold"
-                >
-                  <Link href="/products">
-                    Shop Now <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10 bg-transparent"
-                >
-                  <Link href="/contact">Get a Quote</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ── Hero Carousel ─────────────────────── */}
+       <HeroCarousel />
 
         {/* ── Features Strip ───────────────────── */}
-        {/* bg-background → white in light, dark surface in dark */}
         <section className="bg-background border-b border-border">
           <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -148,7 +110,6 @@ export default function LandingPage() {
         </section>
 
         {/* ── Featured Products ─────────────────── */}
-        {/* bg-muted → zinc-50 in light, dark muted surface in dark */}
         <section className="bg-muted py-16">
           <div className="container mx-auto px-4">
             <div className="flex items-end justify-between mb-8">
@@ -231,10 +192,11 @@ export default function LandingPage() {
                 Committed to Safety &amp; Quality
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Tshitasini Enviro Solutions is a proudly South African PPE supplier
-                dedicated to providing healthcare facilities, clinics, and businesses
-                with the highest quality protective equipment. We ensure compliance
-                with all relevant safety standards so you can focus on what matters most.
+                Tshitasini Enviro Solutions is a proudly South African PPE
+                supplier dedicated to providing healthcare facilities, clinics,
+                and businesses with the highest quality protective equipment.
+                We ensure compliance with all relevant safety standards so you
+                can focus on what matters most.
               </p>
               <div className="flex justify-center gap-10 mb-8">
                 {[
@@ -262,7 +224,6 @@ export default function LandingPage() {
         </section>
 
         {/* ── CTA Banner ───────────────────────── */}
-        {/* Intentionally keeps white text — primary green is always dark enough */}
         <section className="bg-primary text-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">
