@@ -94,7 +94,7 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((f) => (
                 <div key={f.title} className="flex items-start gap-4">
-                  <div className="shrink-0 p-2 bg-primary/10 rounded-lg">
+                  <div className="shrink-0 p-2 rounded-lg">
                     <f.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div>

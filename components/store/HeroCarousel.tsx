@@ -93,18 +93,18 @@ export function HeroCarousel() {
             <CarouselItem key={index}>
               <div
                 className={cn(
-                  'relative bg-gradient-to-br text-white min-h-screen flex items-center',
+                  'relative bg-gradient-to-br text-white min-h-screen flex items-center pt-16',
                   slide.bg
                 )}
               >
                 {/* Subtle dot pattern overlay */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,white_1px,transparent_1px)] bg-[length:40px_40px]" />
 
-                <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+                <div className="container mx-auto px-4 py-12 sm:py-16 md:py-24 relative z-10">
                   <div className="max-w-2xl">
 
                     {/* Heading */}
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
                       {slide.heading}{' '}
                       <br />
                       <span className="text-green-200">{slide.highlight}</span>
