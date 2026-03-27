@@ -100,7 +100,7 @@ export function HeroCarousel() {
                 {/* Subtle dot pattern overlay */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,white_1px,transparent_1px)] bg-[length:40px_40px]" />
 
-                <div className="container mx-auto px-4 py-12 sm:py-16 md:py-24 relative z-10">
+                <div className="container mx-auto px-6 sm:py-10 md:px-16 lg:px-20 py-12 sm:py-16 md:py-24 relative z-10">
                   <div className="max-w-2xl">
 
                     {/* Heading */}

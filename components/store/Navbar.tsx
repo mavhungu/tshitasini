@@ -45,7 +45,7 @@ export default function Navbar() {
             : 'bg-background/75 backdrop-blur-md'
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between h-16">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 flex items-center justify-between h-16">
 
           {/* Logo */}
           <Link

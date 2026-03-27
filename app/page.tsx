@@ -90,7 +90,7 @@ export default function LandingPage() {
 
         {/* ── Features Strip ───────────────────── */}
         <section className="bg-background border-b border-border">
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-6 sm:px-10 md:px-16 py-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((f) => (
                 <div key={f.title} className="flex items-start gap-4">
