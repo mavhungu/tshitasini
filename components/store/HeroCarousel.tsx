@@ -93,7 +93,7 @@ export function HeroCarousel() {
             <CarouselItem key={index}>
               <div
                 className={cn(
-                  'relative bg-gradient-to-br text-white min-h-screen flex items-center pt-16',
+                  'relative bg-gradient-to-br text-white min-h-[calc(100vh-4rem)] flex items-center',
                   slide.bg
                 )}
               >
