@@ -4,11 +4,11 @@ import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   Package,
-  ShoppingCart,
-  LogOut,
+  ShoppingCart
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { signOutAction } from '@/lib/actions/auth'
+//import { signOutAction } from '@/lib/actions/auth'
+
 const navItems = [
   {
     label: 'Overview',
@@ -68,7 +68,7 @@ export function SidebarNav({ onNavigate }: SidebarNavProps) {
         View Store
       </Link>
       {/* Logout */}
-      <form action={signOutAction} >
+      {/* <form action={signOutAction} >
         <button
           type="submit"
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
@@ -76,7 +76,7 @@ export function SidebarNav({ onNavigate }: SidebarNavProps) {
           <LogOut className="h-4 w-4 shrink-0" />
           Sign Out
         </button>
-      </form>
+      </form> */}
     </nav>
   )
 }
