@@ -54,9 +54,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if(!order.shippingAddress) {
+      return NextResponse.json(
+        { error: 'Order is missing a shipping address.' },
+        { status: 422 }
+      )
+    }
+
     // 3. Build the Paystack reference — we use the orderId so the
     //    verify endpoint can look it up without an extra DB query.
     const reference = `PPE-${orderId}`;
+    const { email, firstName, lastName } = order.shippingAddress
 
     // 4. Build callback URL — Paystack will append ?trxref=&reference=
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
@@ -64,17 +72,17 @@ export async function POST(req: NextRequest) {
 
     // 5. Initialize Paystack transaction
     const paystackData = await initializeTransaction({
-      email: order.email,
-      amount: toPaystackAmount(order.total),          // ZAR → cents
+      email,
+      amount: toPaystackAmount(Number(order.totalAmount)),          // ZAR → cents
       reference,
       callback_url: callbackUrl,
-      firstName: order.firstName,
-      lastName: order.lastName,
+      firstName,
+      lastName,
       currency: "ZAR",
       metadata: {
         orderId,
-        customerName: `${order.firstName} ${order.lastName}`,
-        phone: order.phone,
+        customerName: `${firstName} ${lastName}`,
+        phone: order.shippingAddress.phone,
       },
     });
 
@@ -82,7 +90,7 @@ export async function POST(req: NextRequest) {
     //    step can find it by reference string alone.
     await prisma.order.update({
       where: { id: orderId },
-      data: { paymentReference: reference },
+      data: { paymentId: reference },
     });
 
     return NextResponse.json({
