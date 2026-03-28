@@ -111,7 +111,7 @@ export default function LandingPage() {
 
         {/* ── Featured Products ─────────────────── */}
         <section className="bg-muted py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-10 md:px-16">
             <div className="flex items-end justify-between mb-8">
               <div>
                 <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
         {/* ── Categories ───────────────────────── */}
         <section className="bg-background py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-10 md:px-16">
             <div className="text-center mb-10">
               <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
                 Browse by Category
@@ -169,7 +169,7 @@ export default function LandingPage() {
                   href={cat.href}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border hover:border-primary hover:bg-primary/5 transition-all duration-200 group text-center"
                 >
-                  <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                  <div className="p-3 rounded-full group-hover:bg-primary/20 transition-colors">
                     <cat.icon className="h-6 w-6 text-primary" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
@@ -183,7 +183,7 @@ export default function LandingPage() {
 
         {/* ── About Snippet ────────────────────── */}
         <section className="bg-muted py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6 sm:px-10 md:px-16">
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
                 Who We Are
@@ -225,7 +225,7 @@ export default function LandingPage() {
 
         {/* ── CTA Banner ───────────────────────── */}
         <section className="bg-primary text-white py-16">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto text-center px-6 sm:px-10 md:px-16">
             <h2 className="text-3xl font-bold mb-4">
               Need Bulk Orders for Your Facility?
             </h2>
