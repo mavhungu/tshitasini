@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { CheckCircle, Package, MapPin, ArrowRight } from 'lucide-react'
+import { CheckCircle, Clock, Package, MapPin, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { ClearCart } from '@/components/store/ClearCart'
 import { prisma } from '@/lib/prisma/client'
-import { verifyTransaction } from '@lib/paystack'
+import { verifyTransaction } from '@/lib/paystack'
 
 export const metadata: Metadata = {
   title: 'Order Confirmed',
@@ -67,7 +67,6 @@ export default async function SuccessPage({ searchParams }: Props) {
             status: 'PAID',
             paymentMethod: 'PAYSTACK',
             paymentId: txn.reference,
-            paidAt: new Date(txn.paid_at),
           },
         })
       }
