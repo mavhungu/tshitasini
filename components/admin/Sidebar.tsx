@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { SidebarNav } from './SidebarNav'
-import { Leaf } from 'lucide-react'
+import { Leaf, LogOut } from 'lucide-react'
+import { signOutAction } from '@/lib/actions/auth'
 
 interface SidebarUser {
   email: string
@@ -30,8 +31,8 @@ export function Sidebar({ user }: { user: SidebarUser }) {
       </div>
 
       {/* Admin user card */}
-      <div className="border-t border-zinc-700/50 px-4 py-4">
-        <div className="flex items-center gap-3">
+      <div className="shrink-0 border-t border-zinc-700/50">
+        <div className="flex items-center gap-3 px-4 py-4">
           <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
             {user.avatarInitial}
           </div>
@@ -44,8 +45,21 @@ export function Sidebar({ user }: { user: SidebarUser }) {
             <p className="text-xs text-zinc-400 truncate">{user.email}</p>
           </div>
         </div>
-      </div>
 
+        <div className="px-3 pb-4">
+          {/* Logout */}
+          <form action={signOutAction} >
+            <button
+              type="submit"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
+            >
+              <LogOut className="h-4 w-4 shrink-0" />
+              Sign Out
+            </button>
+          </form>
+        </div>
+
+      </div>
     </aside>
   )
 }
