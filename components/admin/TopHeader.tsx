@@ -12,7 +12,7 @@ interface TopHeaderProps {
 
 export function TopHeader({ user, children }: TopHeaderProps) {
   return (
-    <header className="sticky top-0 z-30 bg-background border-b border-border px-4 md:px-6 h-16 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 bg-background border-b border-border px-4 py-5 md:px-6 h-16 flex items-center justify-between gap-4">
 
       {/* Left — mobile menu trigger */}
       <div className="flex items-center gap-3">
