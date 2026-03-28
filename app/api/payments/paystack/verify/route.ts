@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
 
     // 2. Find the order by the stored reference
     const order = await prisma.order.findFirst({
-      where: { paymentReference: reference },
+      where: { paymentId: reference },
       include: {
         orderItems: {
           include: { product: { select: { name: true, images: true } } },
