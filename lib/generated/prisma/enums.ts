@@ -22,8 +22,10 @@ export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
 export const PaymentMethod = {
+  PAYSTACK: 'PAYSTACK',
   STRIPE: 'STRIPE',
-  PAYPAL: 'PAYPAL'
+  PAYPAL: 'PAYPAL',
+  OZOW: 'OZOW'
 } as const
 
 export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]

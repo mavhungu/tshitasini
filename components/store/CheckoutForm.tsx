@@ -40,7 +40,7 @@ const checkoutSchema = z.object({
   province: z.string().min(2, 'Province is required'),
   postalCode: z.string().min(4, 'Please enter a valid postal code'),
   country: z.string().default('South Africa'),
-  paymentMethod: z.enum(['STRIPE', 'PAYPAL']),
+  paymentMethod: z.enum(['STRIPE', 'PAYPAL', 'PAYSTACK', 'OZOW']),
 })
 
 type CheckoutFormInput = z.input<typeof checkoutSchema>
@@ -51,6 +51,47 @@ function FieldError({ message }: { message?: string }) {
   if (!message) return null
   return <p className="text-xs text-destructive mt-1">{message}</p>
 }
+
+// Payment option definitions 
+
+const PAYMENT_OPTIONS = [
+  {
+    value: 'OZOW',
+    id: 'ozow',
+    label: 'Instant EFT',
+    description: 'Pay directly from your South African bank account — no card needed',
+    icon: <Zap className="h-5 w-5 shrink-0" style={{ color: '#00CFAA' }} />,
+    badge: { label: 'Ozow', bg: '#00CFAA', text: '#fff' },
+    recommended: true,
+  },
+  {
+    value: 'PAYSTACK',
+    id: 'paystack',
+    label: 'Card / EFT / Mobile',
+    description: 'All major cards, instant EFT, and mobile money — powered by Paystack',
+    icon: <BadgeDollarSign className="h-5 w-5 shrink-0" style={{ color: '#00C3F7' }} />,
+    badge: { label: 'Paystack', bg: '#00C3F7', text: '#fff' },
+    recommended: false,
+  },
+  {
+    value: 'STRIPE',
+    id: 'stripe',
+    label: 'Pay with Card',
+    description: 'Visa, Mastercard, Amex — secured by Stripe',
+    icon: <CreditCard className="h-5 w-5 text-primary shrink-0" />,
+    badge: { label: 'Stripe', bg: '#635BFF', text: '#fff' },
+    recommended: false,
+  },
+  {
+    value: 'PAYPAL',
+    id: 'paypal',
+    label: 'Pay with PayPal',
+    description: 'Pay using your PayPal account or balance',
+    icon: <Wallet className="h-5 w-5 text-primary shrink-0" />,
+    badge: { label: 'PayPal', bg: '#003087', text: '#fff' },
+    recommended: false,
+  },
+] as const
 
 export function CheckoutForm() {
   const router = useRouter()
@@ -73,7 +114,7 @@ export function CheckoutForm() {
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       country: 'South Africa',
-      paymentMethod: 'STRIPE',
+      paymentMethod: 'PAYSTACK',
     },
   })
 
@@ -151,10 +192,86 @@ export function CheckoutForm() {
     }
   }
 
+  // Paystack
+  // appends ?trxref= on return.
+
+  const onPaystackSubmit = async (data: CheckoutFormData) => {
+    setIsSubmitting(true)
+    try {
+      const orderId = await createInternalOrder(data)
+
+      const res = await fetch('/api/payments/paystack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId }),
+      })
+
+      const json = await res.json()
+      if (!res.ok || !json.authorization_url) {
+        throw new Error(json.error || 'Failed to initialise Paystack payment')
+      }
+
+      // Redirect to Paystack hosted checkout
+      window.location.href = json.authorization_url
+    } catch (error) {
+      toast.error('Payment failed', {
+        description: error instanceof Error ? error.message : 'Please try again.',
+      })
+      setIsSubmitting(false)
+    }
+  }
+
+  // Ozow
+  // appends ?trxref= to the SuccessUrl redirect.
+
+  const onOzowSubmit = async (data: CheckoutFormData) => {
+    setIsSubmitting(true)
+    try {
+      const orderId = await createInternalOrder(data)
+
+      const res = await fetch('/api/payments/ozow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId }),
+      })
+
+      const json = await res.json()
+      if (!res.ok || !json.url) {
+        throw new Error(json.error || 'Failed to initialise Ozow payment')
+      }
+
+      // Redirect to Ozow hosted EFT portal
+      window.location.href = json.url
+    } catch (error) {
+      toast.error('Payment failed', {
+        description: error instanceof Error ? error.message : 'Please try again.',
+      })
+      setIsSubmitting(false)
+    }
+  }
+
   const onSubmit = async (data: CheckoutFormData) => {
-    if (data.paymentMethod === 'STRIPE') 
-      await onStripeSubmit(data)
+    // if (data.paymentMethod === 'STRIPE') 
+    //   await onStripeSubmit(data)
+    switch (data.paymentMethod) {
+      case 'STRIPE':   return onStripeSubmit(data)
+      case 'PAYSTACK': return onPaystackSubmit(data)
+      case 'OZOW':     return onOzowSubmit(data)
+      // PayPal is handled directly by <PayPalButtons> callbacks below
+    }
     // PayPal is handled separately by PayPalButtons callbacks
+  }
+
+    // Submit button label
+
+  const submitLabel = () => {
+    if (isSubmitting) return null // spinner shown instead
+    switch (paymentMethod) {
+      case 'OZOW':     return `Pay R ${total.toFixed(2)} via Instant EFT`
+      case 'PAYSTACK': return `Pay R ${total.toFixed(2)} with Paystack`
+      case 'STRIPE':   return `Pay R ${total.toFixed(2)} with Card`
+      default:         return null // PayPal uses its own SDK button
+    }
   }
 
   return (
@@ -293,53 +410,47 @@ export function CheckoutForm() {
           <h2 className="text-lg font-bold text-foreground">Payment Method</h2>
 
           <RadioGroup
-            defaultValue="STRIPE"
+            defaultValue="OZOW"
             onValueChange={(val) =>
-              setValue('paymentMethod', val as 'STRIPE' | 'PAYPAL')
+              setValue('paymentMethod', val as CheckoutFormData['paymentMethod'])
             }
             className="space-y-3"
           >
-            {/* Stripe */}
-            <label
-              htmlFor="stripe"
-              className="flex items-center gap-4 p-4 rounded-lg border border-border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
-            >
-              <RadioGroupItem value="STRIPE" id="stripe" />
-              <CreditCard className="h-5 w-5 text-primary shrink-0" />
-              <div>
-                <p className="font-medium text-foreground">Pay with Card</p>
-                <p className="text-xs text-muted-foreground">
-                  Visa, Mastercard, Amex — secured by Stripe
-                </p>
-              </div>
-              <span className="ml-auto text-xs font-bold text-white bg-[#635BFF] px-2 py-1 rounded">
-                Stripe
-              </span>
-            </label>
-
-            {/* PayPal option */}
-            <label
-              htmlFor="paypal"
-              className="flex items-center gap-4 p-4 rounded-lg border border-border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
-            >
-              <RadioGroupItem value="PAYPAL" id="paypal" />
-              <Wallet className="h-5 w-5 text-primary shrink-0" />
-              <div>
-                <p className="font-medium text-foreground">Pay with PayPal</p>
-                <p className="text-xs text-muted-foreground">
-                  Pay using your PayPal account or balance
-                </p>
-              </div>
-              <span className="ml-auto text-xs font-bold text-white bg-[#003087] px-2 py-1 rounded">
-                PayPal
-              </span>
-            </label>
+            {PAYMENT_OPTIONS.map((opt) => (
+              <label
+                key={opt.value}
+                htmlFor={opt.id}
+                className="flex items-center gap-4 p-4 rounded-lg border border-border cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+              >
+                <RadioGroupItem value={opt.value} id={opt.id} />
+                {opt.icon}
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="font-medium text-foreground">{opt.label}</p>
+                    {opt.recommended && (
+                      <span className="text-[10px] font-bold uppercase tracking-wide text-emerald-700 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">
+                        Recommended
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {opt.description}
+                  </p>
+                </div>
+                <span
+                  className="ml-auto text-xs font-bold px-2 py-1 rounded shrink-0"
+                  style={{ background: opt.badge.bg, color: opt.badge.text }}
+                >
+                  {opt.badge.label}
+                </span>
+              </label>
+            ))}
           </RadioGroup>
 
           <Separator />
 
-          {/* Stripe button */}
-          {paymentMethod === 'STRIPE' && (
+          {/* Redirect-based payment button (Ozow, Paystack, Stripe) */}
+          {paymentMethod !== 'PAYPAL' && (
             <Button
               type="submit"
               size="lg"
@@ -349,24 +460,21 @@ export function CheckoutForm() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Redirecting to payment...
+                  Redirecting to payment…
                 </>
               ) : (
-                <>
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Pay R {total.toFixed(2)} with Card
-                </>
+                submitLabel()
               )}
             </Button>
           )}
 
-          {/* PayPal buttons */}
+          {/* PayPal SDK buttons — triggered by the PayPal JS SDK directly */}
           {paymentMethod === 'PAYPAL' && (
             <div className="space-y-2">
               <PayPalButtons
                 style={{ layout: 'vertical', shape: 'rect', label: 'pay' }}
                 createOrder={async () => {
-                  // Validate all form fields before opening PayPal popup
+                  // Validate all fields before opening the PayPal popup
                   const isValid = await trigger()
                   if (!isValid) {
                     validationErrorRef.current =
@@ -382,7 +490,6 @@ export function CheckoutForm() {
                   })
                   internalOrderIdRef.current = orderId
 
-                  // Create PayPal order on server using DB total
                   const paypalRes = await fetch('/api/payments/paypal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -424,7 +531,7 @@ export function CheckoutForm() {
                   } else {
                     toast.error('PayPal payment failed', {
                       description:
-                        'Please try again or use card payment instead.',
+                        'Please try again or choose a different payment method.',
                     })
                   }
                 }}
@@ -437,9 +544,7 @@ export function CheckoutForm() {
       {/* ── Order Summary Sidebar ─────────────── */}
       <div className="lg:col-span-2">
         <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
-          <h2 className="text-lg font-bold text-foreground mb-4">
-            Order Summary
-          </h2>
+          <h2 className="text-lg font-bold text-foreground mb-4">Order Summary</h2>
 
           <div className="space-y-3 mb-4">
             {items.map((item) => (
@@ -462,20 +567,21 @@ export function CheckoutForm() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-muted-foreground">Subtotal</span>
-              <span className="text-foreground">
-                R {totalPrice.toFixed(2)}
-              </span>
+              <span className="text-foreground">R {totalPrice.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Shipping</span>
               {shipping === 0 ? (
                 <span className="text-green-600 font-medium">Free</span>
               ) : (
-                <span className="text-foreground">
-                  R {shipping.toFixed(2)}
-                </span>
+                <span className="text-foreground">R {shipping.toFixed(2)}</span>
               )}
             </div>
+            {shipping > 0 && (
+              <p className="text-xs text-muted-foreground">
+                Free shipping on orders over R {SHIPPING_THRESHOLD}
+              </p>
+            )}
           </div>
 
           <Separator className="my-4" />
