@@ -16,17 +16,17 @@ export function TopHeader({ user, children }: TopHeaderProps) {
 
       {/* Left — mobile menu trigger */}
       <div className="flex items-center gap-3">
-        {children}
+        {/* {children}
         <span className="text-sm text-muted-foreground hidden sm:block">
           Welcome back,{' '}
           <span className="font-semibold text-foreground">
             {user.firstName || user.email}
           </span>
-        </span>
+        </span> */}
       </div>
 
       {/* Right — admin avatar */}
-      <div className="flex items-center gap-3 lg:hidden">
+      <div className="flex items-center gap-3">
         <div className="text-right hidden sm:block">
           <p className="text-xs font-medium text-foreground leading-none">
             {user.firstName
