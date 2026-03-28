@@ -26,7 +26,7 @@ export function TopHeader({ user, children }: TopHeaderProps) {
       </div>
 
       {/* Right — admin avatar */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 lg:hidden">
         <div className="text-right hidden sm:block">
           <p className="text-xs font-medium text-foreground leading-none">
             {user.firstName
