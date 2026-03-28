@@ -1,5 +1,4 @@
 /**
- * ──────────────────────────────────────────────────────────────
  * POST /api/payments/paystack
  *   Body: { orderId: string }
  *   Returns: { authorization_url: string; reference: string }
@@ -7,7 +6,6 @@
  * Fetches the verified order from the DB, converts the total to
  * Paystack cents, and returns a hosted-checkout URL for the
  * client to redirect to.
- * ──────────────────────────────────────────────────────────────
  */
 
 import { NextRequest, NextResponse } from "next/server";

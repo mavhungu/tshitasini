@@ -22,7 +22,7 @@ const shippingSchema = z.object({
 const createOrderSchema = z.object({
   items: z.array(orderItemSchema).min(1),
   shippingAddress: shippingSchema,
-  paymentMethod: z.enum(['STRIPE', 'PAYPAL']),
+  paymentMethod: z.enum(['STRIPE', 'PAYPAL', 'PAYSTACK', 'OZOW']),
 })
 
 const SHIPPING_THRESHOLD = 1000
