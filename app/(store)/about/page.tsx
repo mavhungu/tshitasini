@@ -76,7 +76,7 @@ export default function AboutPage() {
     <>
       {/* ── Hero ─────────────────────────────── */}
       <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 text-center">
           <Badge className="mb-4 bg-white/20 text-white border-white/30">
             Proudly South African
           </Badge>
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
       {/* ── Our Story ────────────────────────── */}
       <section className="bg-background py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">

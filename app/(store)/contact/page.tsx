@@ -37,7 +37,7 @@ export default function ContactPage() {
     <>
       {/* ── Hero ─────────────────────────────── */}
       <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
           <p className="text-green-100 text-lg max-w-xl mx-auto">
             We would love to hear from you. Reach out for orders, quotes,
@@ -48,7 +48,7 @@ export default function ContactPage() {
 
       {/* ── Main Content ─────────────────────── */}
       <section className="bg-muted py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
             {/* Info + Map */}
