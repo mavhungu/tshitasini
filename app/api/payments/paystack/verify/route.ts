@@ -46,9 +46,7 @@ export async function GET(req: NextRequest) {
     const order = await prisma.order.findFirst({
       where: { paymentId: reference },
       include: {
-        orderItems: {
-          include: { product: { select: { name: true, images: true } } },
-        },
+        items: true,
         shippingAddress: true,
       },
     });
@@ -62,12 +60,14 @@ export async function GET(req: NextRequest) {
 
     // 3. Guard against amount tampering — compare DB total with
     //    what Paystack actually charged (both in cents).
-    const expectedCents = toPaystackAmount(order.total);
+    const expectedCents = toPaystackAmount(Number(order.totalAmount));
     if (txn.amount !== expectedCents) {
-      console.error(
-        `[paystack/verify] Amount mismatch: expected ${expectedCents}, got ${txn.amount}`,
-        { orderId: order.id, reference }
-      );
+      console.error('[paystack/verify] Amount mismatch', {
+        expected: expectedCents,
+        received: txn.amount,
+        orderId: order.id, 
+        reference: txn.reference, 
+      });
       return NextResponse.json(
         { error: "Payment amount mismatch. Please contact support." },
         { status: 409 }
@@ -81,7 +81,6 @@ export async function GET(req: NextRequest) {
         data: {
           status: "PAID",
           paymentId: txn.reference,          // Paystack's own reference
-          paidAt: new Date(txn.paid_at),
           paymentMethod: "PAYSTACK",
         },
       });
@@ -92,20 +91,15 @@ export async function GET(req: NextRequest) {
       orderId: order.id,
       status: "PAID",
       reference: txn.reference,
-      firstName: order.firstName,
-      lastName: order.lastName,
-      email: order.email,
       paymentMethod: "PAYSTACK",
-      subtotal: order.subtotal,
-      shipping: order.shipping,
-      total: order.total,
+      totalAmount: Number(order.totalAmount),
       shippingAddress: order.shippingAddress,
-      items: order.orderItems.map((item) => ({
-        name: item.product.name,
+      items: order.items.map((item) => ({
+        name: item.productName,
+        productImage: item.productImage,
         quantity: item.quantity,
-        unitPrice: item.unitPrice,
-        lineTotal: item.quantity * item.unitPrice,
-        image: item.product.images?.[0] ?? null,
+        unitPrice: Number(item.unitPrice),
+        lineTotal: item.quantity * Number(item.unitPrice),
       })),
     });
   } catch (err) {
