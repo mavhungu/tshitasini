@@ -73,7 +73,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const inStock = product.stock > 0
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 py-8 md:py-12">
       <Link
         href="/products"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
