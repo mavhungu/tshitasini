@@ -32,7 +32,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
 
       {/* Admin user card */}
       <div className="shrink-0 border-t border-zinc-700/50">
-        <div className="flex items-center gap-3 px-4 py-4">
+        {/* <div className="flex items-center gap-3 px-4 py-4">
           <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
             {user.avatarInitial}
           </div>
@@ -44,7 +44,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
             </p>
             <p className="text-xs text-zinc-400 truncate">{user.email}</p>
           </div>
-        </div>
+        </div> */}
 
         <div className="px-3 pb-4">
           {/* Logout */}
