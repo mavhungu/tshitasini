@@ -46,7 +46,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
           </div>
         </div> */}
 
-        <div className="px-3 pb-4">
+        <div className="px-3 py-4">
           {/* Logout */}
           <form action={signOutAction} >
             <button
