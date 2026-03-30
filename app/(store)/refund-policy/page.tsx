@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy',
-  description:
-    'Learn about the refund, return, and cancellation policy for orders placed with Tshitasini Enviro Solutions.',
+  description: 'Learn about the refund, return, and cancellation policy for orders placed with Tshitasini Enviro Solutions.',
 }
 
 const sections = [
@@ -122,7 +121,7 @@ const sections = [
 
 export default function RefundPolicyPage() {
   return (
-    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12 max-w-4xl">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12">
 
       {/* Back link */}
       <Link
@@ -141,7 +140,7 @@ export default function RefundPolicyPage() {
         <h1 className="text-4xl font-bold text-foreground mb-4">
           Refund & Cancellation Policy
         </h1>
-        <p className="text-muted-foreground leading-relaxed max-w-2xl">
+        <p className="text-muted-foreground leading-relaxed">
           At Tshitasini Enviro Solutions, we are committed to ensuring your
           satisfaction with every order. Please read this policy carefully before
           placing an order. By completing a purchase on our platform you agree to
