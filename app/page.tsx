@@ -236,7 +236,7 @@ export default function LandingPage() {
             <Button
               asChild
               size="lg"
-              className="bg-muted text-primary hover:bg-muted/80 font-semibold"
+              className="bg-muted text-primary font-semibold"
             >
               <Link href="/contact">
                 Get In Touch <ArrowRight className="ml-2 h-4 w-4" />
