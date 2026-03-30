@@ -74,7 +74,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-28 pb-20">
+      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-green-100 text-lg max-w-2xl mx-auto">
@@ -149,7 +149,7 @@ export default function AboutPage() {
             {values.map((value) => (
               <Card key={value.title} className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6 flex items-start gap-4">
-                  <div className="p-2 bg-primary/10 rounded-lg shrink-0">
+                  <div className="p-2 rounded-lg shrink-0">
                     <value.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
