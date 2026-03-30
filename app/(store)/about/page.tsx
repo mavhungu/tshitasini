@@ -119,7 +119,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            {/* <div className="grid grid-cols-2 gap-6">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
@@ -131,7 +131,7 @@ export default function AboutPage() {
                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
