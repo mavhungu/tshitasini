@@ -94,7 +94,7 @@ export default async function SuccessPage({ searchParams }: Props) {
 
     if (isOzowPending) {
       return (
-        <div className="container mx-auto px-4 py-12 max-w-2xl">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12 max-w-2xl">
           <ClearCart />
 
         <div className="text-center mb-10">
@@ -168,7 +168,7 @@ export default async function SuccessPage({ searchParams }: Props) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-2xl">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12 max-w-2xl">
       <ClearCart />
 
       {/* Success header */}
