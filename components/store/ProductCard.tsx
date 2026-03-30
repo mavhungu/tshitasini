@@ -42,15 +42,15 @@ export function ProductCard({ product }: { product: Product }) {
         )}
 
         {/* Category badge */}
-        <div className="absolute top-3 left-2">
-          <Badge className="bg-primary text-primary-foreground text-xs">
+        <div className="absolute top-4 left-4 z-10">
+          <Badge className="bg-primary text-primary-foreground text-xs shadow-sm px-3 py-1">
             {product.category}
           </Badge>
         </div>
 
         {/* Out of stock overlay */}
         {outOfStock && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
             <span className="bg-background text-foreground text-sm font-semibold px-3 py-1 rounded-full">
               Out of Stock
             </span>
