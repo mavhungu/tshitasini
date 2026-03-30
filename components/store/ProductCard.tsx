@@ -42,7 +42,7 @@ export function ProductCard({ product }: { product: Product }) {
         )}
 
         {/* Category badge */}
-        <div className="absolute top-2 left-2">
+        <div className="absolute top-3 left-2">
           <Badge className="bg-primary text-primary-foreground text-xs">
             {product.category}
           </Badge>
