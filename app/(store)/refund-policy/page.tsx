@@ -19,29 +19,29 @@ const sections = [
         heading: 'Eligibility for Returns',
         body: `We accept returns within 7 (seven) business days of the confirmed delivery date, provided the following conditions are met:
 
-- The product is unused, unopened, and in its original packaging
-- The product has not been tampered with or removed from its sealed packaging
-- Proof of purchase (order confirmation or invoice) is provided
-- The return request is submitted within the stipulated 7-day window`,
+          - The product is unused, unopened, and in its original packaging
+          - The product has not been tampered with or removed from its sealed packaging
+          - Proof of purchase (order confirmation or invoice) is provided
+          - The return request is submitted within the stipulated 7-day window`,
       },
       {
         heading: 'Non-Returnable Items',
         body: `Due to the nature of medical and safety products, the following items cannot be returned or refunded:
 
-- Opened or used PPE products (gloves, masks, gowns, face shields)
-- Products that have been removed from sterile or sealed packaging
-- Custom or bulk-order items manufactured or sourced specifically for a client
-- Products damaged due to misuse, improper storage, or negligence after delivery
-- Items purchased on clearance or marked as final sale`,
+          - Opened or used PPE products (gloves, masks, gowns, face shields)
+          - Products that have been removed from sterile or sealed packaging
+          - Custom or bulk-order items manufactured or sourced specifically for a client
+          - Products damaged due to misuse, improper storage, or negligence after delivery
+          - Items purchased on clearance or marked as final sale`,
       },
       {
         heading: 'Refund Process',
         body: `Once a return request is approved:
 
-- Approved refunds are processed within 7–10 business days of receiving the returned goods
-- Refunds are issued to the original payment method (Stripe card or PayPal account)
-- Shipping costs are non-refundable unless the return is due to our error (e.g. wrong item shipped, defective product)
-- You will receive an email confirmation once your refund has been processed`,
+          - Approved refunds are processed within 7–10 business days of receiving the returned goods
+          - Refunds are issued to the original payment method (Stripe card or PayPal account)
+          - Shipping costs are non-refundable unless the return is due to our error (e.g. wrong item shipped, defective product)
+          - You will receive an email confirmation once your refund has been processed`,
       },
     ],
   },
@@ -53,30 +53,30 @@ const sections = [
         heading: 'Cancellation by Customer',
         body: `You may request an order cancellation under the following conditions:
 
-- Cancellation requests must be submitted within 24 hours of placing your order
-- Orders that have already been dispatched or are in transit cannot be cancelled
-- To request a cancellation, contact us immediately via email or phone with your order reference number
-- If the cancellation is approved before dispatch, a full refund will be issued within 5–7 business days`,
+          - Cancellation requests must be submitted within 24 hours of placing your order
+          - Orders that have already been dispatched or are in transit cannot be cancelled
+          - To request a cancellation, contact us immediately via email or phone with your order reference number
+          - If the cancellation is approved before dispatch, a full refund will be issued within 5–7 business days`,
       },
       {
         heading: 'Bulk & Custom Orders',
         body: `For bulk orders or custom-sourced PPE products:
 
-- Cancellations must be requested within 2 hours of order confirmation
-- Orders already in production, procurement, or dispatch cannot be cancelled
-- A cancellation fee may apply for orders that have entered the procurement process
-- All bulk order cancellation requests must be submitted in writing via email`,
+          - Cancellations must be requested within 2 hours of order confirmation
+          - Orders already in production, procurement, or dispatch cannot be cancelled
+          - A cancellation fee may apply for orders that have entered the procurement process
+          - All bulk order cancellation requests must be submitted in writing via email`,
       },
       {
         heading: 'Cancellation by Tshitasini Enviro Solutions',
         body: `We reserve the right to cancel an order under the following circumstances:
 
-- Product is out of stock or no longer available
-- Suspected fraudulent transaction or payment verification failure
-- Incorrect pricing due to a system error
-- Inability to fulfil delivery to the specified address
+          - Product is out of stock or no longer available
+          - Suspected fraudulent transaction or payment verification failure
+          - Incorrect pricing due to a system error
+          - Inability to fulfil delivery to the specified address
 
-In such cases, you will be notified promptly and a full refund will be issued within 5–7 business days.`,
+          In such cases, you will be notified promptly and a full refund will be issued within 5–7 business days.`,
       },
     ],
   },
@@ -88,18 +88,18 @@ In such cases, you will be notified promptly and a full refund will be issued wi
         heading: 'Wrong Item Received',
         body: `If you receive an item different from what you ordered, please contact us within 48 hours of delivery. We will arrange:
 
-- Collection of the incorrect item at no cost to you
-- Dispatch of the correct item as soon as possible
-- Or a full refund if the correct item is unavailable`,
+          - Collection of the incorrect item at no cost to you
+          - Dispatch of the correct item as soon as possible
+          - Or a full refund if the correct item is unavailable`,
       },
       {
         heading: 'Damaged or Defective Products',
         body: `If your order arrives damaged or defective:
 
-- Notify us within 48 hours of delivery with photographic evidence
-- We will assess the claim and respond within 2 business days
-- Approved claims will result in a replacement or full refund at our discretion
-- We do not accept damage claims for products that were damaged after delivery due to improper handling or storage`,
+          - Notify us within 48 hours of delivery with photographic evidence
+          - We will assess the claim and respond within 2 business days
+          - Approved claims will result in a replacement or full refund at our discretion
+          - We do not accept damage claims for products that were damaged after delivery due to improper handling or storage`,
       },
     ],
   },
@@ -110,11 +110,11 @@ In such cases, you will be notified promptly and a full refund will be issued wi
       {
         heading: 'Summary of Key Deadlines',
         body: `• Return request window: 7 business days from delivery
-- Order cancellation window: 24 hours from order placement
-- Bulk/custom order cancellation: 2 hours from confirmation
-- Defective/wrong item report: 48 hours from delivery
-- Refund processing time: 7–10 business days after approval
-- Cancellation refund time: 5–7 business days after approval`,
+          - Order cancellation window: 24 hours from order placement
+          - Bulk/custom order cancellation: 2 hours from confirmation
+          - Defective/wrong item report: 48 hours from delivery
+          - Refund processing time: 7–10 business days after approval
+          - Cancellation refund time: 5–7 business days after approval`,
       },
     ],
   },
@@ -122,7 +122,7 @@ In such cases, you will be notified promptly and a full refund will be issued wi
 
 export default function RefundPolicyPage() {
   return (
-    <div className="container mx-auto px-4 pt-28 pb-16 max-w-4xl">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12 max-w-4xl">
 
       {/* Back link */}
       <Link
@@ -164,7 +164,7 @@ export default function RefundPolicyPage() {
           <div key={section.title}>
             {/* Section heading */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-primary/10 rounded-lg shrink-0">
+              <div className="p-2 rounded-lg shrink-0">
                 <section.icon className="h-5 w-5 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-foreground">
