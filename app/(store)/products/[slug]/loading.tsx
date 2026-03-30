@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator'
 
 export default function ProductDetailLoading() {
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12">
       {/* Breadcrumb */}
       <Skeleton className="h-4 w-32 mb-8" />
 

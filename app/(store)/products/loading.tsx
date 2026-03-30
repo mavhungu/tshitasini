@@ -2,7 +2,7 @@ import { ProductCardSkeleton } from '@/components/store/ProductCard'
 
 export default function ProductsLoading() {
   return (
-    <div className="md:py-12 container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12">
+    <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pt-28 pb-12">
       {/* Header skeleton */}
       <div className="mb-8 space-y-2">
         <div className="h-3 w-20 bg-zinc-200 rounded animate-pulse" />

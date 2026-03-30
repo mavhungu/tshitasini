@@ -17,7 +17,7 @@ export default function ProductDetailError({
   }, [error])
 
   return (
-    <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center text-center">
+    <div className="container mx-auto px-4 pt-28 pb-12 flex flex-col items-center justify-center text-center">
       <div className="p-4 bg-destructive/10 rounded-full mb-4">
         <AlertCircle className="h-10 w-10 text-destructive" />
       </div>
