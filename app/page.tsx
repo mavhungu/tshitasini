@@ -214,7 +214,7 @@ export default function LandingPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 <Link href="/about">Learn More About Us</Link>
               </Button>
@@ -223,12 +223,12 @@ export default function LandingPage() {
         </section>
 
         {/* ── CTA Banner ───────────────────────── */}
-        <section className="bg-primary text-white py-16">
+        <section className="bg-primary text-primary-foreground py-16">
           <div className="container mx-auto text-center px-6 sm:px-10 md:px-16">
             <h2 className="text-3xl font-bold mb-4">
               Need Bulk Orders for Your Facility?
             </h2>
-            <p className="text-green-100 mb-8 max-w-xl mx-auto">
+            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
               We offer competitive bulk pricing for hospitals, clinics,
               pharmacies, and large organisations. Get in touch and we will
               tailor a quote for you.
@@ -236,7 +236,7 @@ export default function LandingPage() {
             <Button
               asChild
               size="lg"
-              className="bg-muted text-primary hover:bg-muted font-semibold"
+              className="bg-muted text-primary hover:bg-muted/80 font-semibold"
             >
               <Link href="/contact">
                 Get In Touch <ArrowRight className="ml-2 h-4 w-4" />
