@@ -86,6 +86,7 @@ export function ContactForm() {
             placeholder="John"
             {...register('firstName')}
             aria-invalid={!!errors.firstName}
+            className="bg-input border-input focus-visible:ring-ring"
           />
           {errors.firstName && (
             <p className="text-xs text-destructive">{errors.firstName.message}</p>
@@ -98,6 +99,7 @@ export function ContactForm() {
             placeholder="Doe"
             {...register('lastName')}
             aria-invalid={!!errors.lastName}
+            className="bg-input border-input focus-visible:ring-ring"
           />
           {errors.lastName && (
             <p className="text-xs text-destructive">{errors.lastName.message}</p>
@@ -113,7 +115,8 @@ export function ContactForm() {
           type="email"
           placeholder="john@example.com"
           {...register('email')}
-          aria-invalid={!!errors.email}
+          aria-invalid={!!errors.email} 
+          className="bg-input border-input focus-visible:ring-ring"
         />
         {errors.email && (
           <p className="text-xs text-destructive">{errors.email.message}</p>
@@ -127,7 +130,8 @@ export function ContactForm() {
           id="phone"
           type="tel"
           placeholder="+27 10 000 0000"
-          {...register('phone')}
+          {...register('phone')} 
+          className="bg-input border-input focus-visible:ring-ring"
         />
       </div>
 
@@ -139,7 +143,7 @@ export function ContactForm() {
             setValue('subject', val, { shouldValidate: true })
           }
         >
-          <SelectTrigger id="subject" aria-invalid={!!errors.subject}>
+          <SelectTrigger id="subject" className="bg-input border-input focus-visible:ring-ring" aria-invalid={!!errors.subject}>
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
           <SelectContent>
@@ -162,7 +166,8 @@ export function ContactForm() {
           id="message"
           placeholder="Tell us how we can help you..."
           rows={5}
-          {...register('message')}
+          {...register('message')} 
+          className="bg-input border-input focus-visible:ring-ring"
           aria-invalid={!!errors.message}
         />
         {errors.message && (
