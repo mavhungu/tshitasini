@@ -9,6 +9,7 @@ export default authkitMiddleware({
       '/products/(.*)',
       '/about',
       '/contact',
+      '/refund-policy',
       '/cart',
       '/checkout',
       '/checkout/(.*)',
