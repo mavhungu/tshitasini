@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
   const outOfStock = product.stock === 0
 
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <Card className="group overflow-hidden p-0 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         {product.images?.[0] ? (
@@ -31,7 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
             src={product.images[0]}
             alt={product.name}
             fill
-            className="object-cover object-[50%_0%] w-fill h-fill transition-transform duration-300 group-hover:scale-105"
+            className="object-cover object-[center_top] w-fill h-fill transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             priority={false}
           />
