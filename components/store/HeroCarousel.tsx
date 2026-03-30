@@ -170,7 +170,7 @@ export function HeroCarousel() {
 
         {/* Navigation arrows */}
         <CarouselPrevious className="left-4 md:left-8 bg-white/10 hover:bg-white/20 border-white/20 text-white hover:text-white disabled:opacity-30" />
-        <CarouselNext className="right-4" />
+        <CarouselNext className="right-4 md:right-8 bg-white/10 hover:bg-white/20 border-white/20 text-white hover:text-white disabled:opacity-30" />
       </Carousel>
     </section>
   )

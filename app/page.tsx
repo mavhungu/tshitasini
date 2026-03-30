@@ -202,7 +202,6 @@ export default function LandingPage() {
                 {[
                   { icon: ShieldCheck, label: 'SABS Compliant' },
                   { icon: Award, label: 'ISO Certified' },
-                  { icon: Users, label: '500+ Clients' },
                 ].map(({ icon: Icon, label }) => (
                   <div key={label} className="flex flex-col items-center gap-1">
                     <Icon className="h-6 w-6 text-primary" />
@@ -237,7 +236,7 @@ export default function LandingPage() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-primary hover:bg-green-50 font-semibold"
+              className="bg-muted text-primary hover:bg-muted font-semibold"
             >
               <Link href="/contact">
                 Get In Touch <ArrowRight className="ml-2 h-4 w-4" />
