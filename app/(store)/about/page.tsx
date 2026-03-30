@@ -74,8 +74,8 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white pt-16 py-20">
-        <div className="container mx-auto text-center px-6 sm:px-10 md:px-16 lg:px-20">
+      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-20">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-green-100 text-lg max-w-2xl mx-auto">
             Protecting lives through quality PPE — that is the mission driving
@@ -86,7 +86,7 @@ export default function AboutPage() {
 
       {/* ── Our Story ────────────────────────── */}
       <section className="bg-background py-16">
-        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">
