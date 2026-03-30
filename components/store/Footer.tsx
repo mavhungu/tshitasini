@@ -8,7 +8,7 @@ const quickLinks = [
   { href: '/products', label: 'Products' },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact' },
-  { href: '/cart', label: 'Cart' },
+  { href: '/refund-policy', label: 'Refund Policy' },
 ]
 
 const categories = [
