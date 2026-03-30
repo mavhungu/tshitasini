@@ -59,7 +59,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const categories = rawCategories.map((p) => p.category)
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="container mx-auto px-4 py-20 pt-16 md:py-12">
       <div className="mb-8">
         <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
           Catalogue
