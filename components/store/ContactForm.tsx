@@ -86,7 +86,7 @@ export function ContactForm() {
             placeholder="John"
             {...register('firstName')}
             aria-invalid={!!errors.firstName}
-            className="bg-input border-input focus-visible:ring-ring"
+            className="bg-input border border-border focus-visible:ring-ring"
           />
           {errors.firstName && (
             <p className="text-xs text-destructive">{errors.firstName.message}</p>
@@ -99,7 +99,7 @@ export function ContactForm() {
             placeholder="Doe"
             {...register('lastName')}
             aria-invalid={!!errors.lastName}
-            className="bg-input border-input focus-visible:ring-ring"
+            className="bg-input border border-border focus-visible:ring-ring"
           />
           {errors.lastName && (
             <p className="text-xs text-destructive">{errors.lastName.message}</p>

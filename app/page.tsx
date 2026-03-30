@@ -169,7 +169,7 @@ export default function LandingPage() {
                   href={cat.href}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border hover:border-primary hover:bg-primary/5 transition-all duration-200 group text-center"
                 >
-                  <div className="p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                  <div className="p-3 rounded-full transition-colors">
                     <cat.icon className="h-6 w-6 text-primary" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
