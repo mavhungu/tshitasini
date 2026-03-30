@@ -207,7 +207,7 @@ export default function RefundPolicyPage() {
       <Separator className="mb-10" />
 
       {/* Contact section */}
-      <div className="bg-muted rounded-xl p-6 md:p-8">
+      <div className="rounded-xl p-6 md:p-8">
         <h2 className="text-xl font-bold text-foreground mb-2">
           Need Help With a Return or Cancellation?
         </h2>
@@ -217,13 +217,13 @@ export default function RefundPolicyPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex items-center gap-2 text-sm text-foreground">
-            <div className="p-1.5 bg-primary/10 rounded-md">
+            <div className="p-1.5 rounded-md">
               <Mail className="h-4 w-4 text-primary" />
             </div>
             <span>info@tshitasini.co.za</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground">
-            <div className="p-1.5 bg-primary/10 rounded-md">
+            <div className="p-1.5 rounded-md">
               <Phone className="h-4 w-4 text-primary" />
             </div>
             <span>+27 10 000 0000</span>
