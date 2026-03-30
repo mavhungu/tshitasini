@@ -116,7 +116,7 @@ export function ContactForm() {
           placeholder="john@example.com"
           {...register('email')}
           aria-invalid={!!errors.email} 
-          className="bg-input border-input focus-visible:ring-ring"
+          className="bg-input border border-border focus-visible:ring-ring"
         />
         {errors.email && (
           <p className="text-xs text-destructive">{errors.email.message}</p>
@@ -131,7 +131,7 @@ export function ContactForm() {
           type="tel"
           placeholder="+27 10 000 0000"
           {...register('phone')} 
-          className="bg-input border-input focus-visible:ring-ring"
+          className="bg-input border border-border focus-visible:ring-ring"
         />
       </div>
 
@@ -143,7 +143,7 @@ export function ContactForm() {
             setValue('subject', val, { shouldValidate: true })
           }
         >
-          <SelectTrigger id="subject" className="bg-input border-input focus-visible:ring-ring" aria-invalid={!!errors.subject}>
+          <SelectTrigger id="subject" className="bg-input border border-border focus-visible:ring-ring" aria-invalid={!!errors.subject}>
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
           <SelectContent>
@@ -167,7 +167,7 @@ export function ContactForm() {
           placeholder="Tell us how we can help you..."
           rows={5}
           {...register('message')} 
-          className="bg-input border-input focus-visible:ring-ring"
+          className="bg-input border border-border focus-visible:ring-ring"
           aria-invalid={!!errors.message}
         />
         {errors.message && (
