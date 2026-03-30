@@ -6,7 +6,6 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -77,9 +76,6 @@ export default function AboutPage() {
       {/* ── Hero ─────────────────────────────── */}
       <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-20">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 text-center">
-          <Badge className="mb-4 bg-white/20 text-white border-white/30">
-            Proudly South African
-          </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-green-100 text-lg max-w-2xl mx-auto">
             Protecting lives through quality PPE — that is the mission driving
@@ -142,7 +138,7 @@ export default function AboutPage() {
 
       {/* ── Why Choose Us ────────────────────── */}
       <section className="bg-muted py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16">
           <div className="text-center mb-10">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
               Why Tshitasini
@@ -173,7 +169,7 @@ export default function AboutPage() {
 
       {/* ── Product Categories ───────────────── */}
       <section className="bg-background py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-10 md:px-16">
           <div className="text-center mb-10">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
               What We Offer
@@ -199,7 +195,7 @@ export default function AboutPage() {
 
       {/* ── CTA ──────────────────────────────── */}
       <section className="bg-primary text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto text-center px-6 sm:px-10 md:px-16">
           <h2 className="text-3xl font-bold mb-4">Ready to Place an Order?</h2>
           <p className="text-green-100 mb-8 max-w-xl mx-auto">
             Browse our full product catalogue or reach out for a custom quote
