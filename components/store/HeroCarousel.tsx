@@ -14,6 +14,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 const heroSlides = [
   {
@@ -22,7 +23,7 @@ const heroSlides = [
     description: 'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
     primaryCta: { label: 'Shop Gloves', href: '/products?category=Gloves' },
     secondaryCta: { label: 'Get a Quote', href: '/contact' },
-    bg: '/images/slide-1.jpg',
+    image: '/images/slide-1.jpg',
   },
   {
     heading: 'Medical-Grade',
@@ -30,7 +31,7 @@ const heroSlides = [
     description: 'N95, surgical, and 3-ply masks with full face shield options. Protecting healthcare workers every day.',
     primaryCta: { label: 'Shop Masks', href: '/products?category=Masks' },
     secondaryCta: { label: 'View All PPE', href: '/products' },
-    bg: 'from-green-900 via-green-800 to-primary',
+    image: '/images/slide-2.jpg',
   },
   {
     heading: 'Protective',
@@ -38,7 +39,7 @@ const heroSlides = [
     description: 'Anti-fog goggles, safety glasses, and full face shields designed for healthcare and industrial environments.',
     primaryCta: { label: 'Shop Eye Protection', href: '/products?category=Eye+Protection' },
     secondaryCta: { label: 'Contact Us', href: '/contact' },
-    bg: 'from-emerald-900 via-green-800 to-green-700',
+    image: '/images/slide-3.jpg',
   },
   {
     heading: 'Full PPE Kits',
@@ -47,7 +48,7 @@ const heroSlides = [
       'Complete head-to-toe protection packages for hospitals, clinics, pharmacies, and industrial workplaces at competitive bulk pricing.',
     primaryCta: { label: 'Browse All Products', href: '/products' },
     secondaryCta: { label: 'Request a Quote', href: '/contact' },
-    bg: 'from-green-800 via-primary to-emerald-700',
+    image: '/images/slide-3.jpg',
   },
 ]
 
@@ -78,36 +79,37 @@ export function HeroCarousel() {
       <Carousel
         setApi={setApi}
         plugins={[plugin.current]}
-        opts={{
-          align: 'start',
-          loop: true,
-        }}
+        opts={{ align: 'start', loop: true, }}
         className="w-full"
       >
         <CarouselContent>
           {heroSlides.map((slide, index) => (
             <CarouselItem key={index}>
-              <div
-                className={cn(
-                  'relative bg-gradient-to-br text-background min-h-[calc(100vh-4rem)] flex items-center',
-                  slide.bg
-                )}
-              >
+              <div className='relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden'>
+                {/* Background image */}
+                <Image
+                  src={slide.image}
+                  alt={`${slide.heading} ${slide.highlight}`}
+                  fill
+                  priority={index === 0} // Prioritize loading the first slide's image
+                  className="object-cover object-center"
+                  sizes='100vw'
+                />
                 {/* Subtle dot pattern overlay */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,background_1px,transparent_1px)] bg-[length:40px_40px]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent" />
 
                 <div className="container mx-auto px-6 sm:py-10 md:px-16 lg:px-20 py-12 sm:py-16 md:py-24 relative z-10">
                   <div className="max-w-2xl">
 
                     {/* Heading */}
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 drop-shadow-md text-background">
                       {slide.heading}{' '}
                       <br />
-                      <span className="text-green-200">{slide.highlight}</span>
+                      <span className="text-primary">{slide.highlight}</span>
                     </h1>
 
                     {/* Description */}
-                    <p className="text-base md:text-lg text-green-100 mb-8 leading-relaxed max-w-lg">
+                    <p className="text-base md:text-lg text-white/80 mb-8 leading-relaxed max-w-lg drop-shadow">
                       {slide.description}
                     </p>
 
