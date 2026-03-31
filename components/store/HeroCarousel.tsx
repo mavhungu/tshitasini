@@ -48,7 +48,7 @@ const heroSlides = [
       'Complete head-to-toe protection packages for hospitals, clinics, pharmacies, and industrial workplaces at competitive bulk pricing.',
     primaryCta: { label: 'Browse All Products', href: '/products' },
     secondaryCta: { label: 'Request a Quote', href: '/contact' },
-    image: '/images/slide-3.jpg',
+    image: '/images/18.jpg',
   },
 ]
 
