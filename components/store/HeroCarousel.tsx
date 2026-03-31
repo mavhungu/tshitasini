@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Autoplay from 'embla-carousel-autoplay'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import {
   Carousel,
   CarouselContent,
@@ -23,7 +22,7 @@ const heroSlides = [
     description: 'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
     primaryCta: { label: 'Shop Gloves', href: '/products?category=Gloves' },
     secondaryCta: { label: 'Get a Quote', href: '/contact' },
-    bg: 'from-primary/90 via-primary to-green-800',
+    bg: 'from-primary/90 via-primary to-primary-800',
   },
   {
     heading: 'Medical-Grade',
@@ -31,7 +30,7 @@ const heroSlides = [
     description: 'N95, surgical, and 3-ply masks with full face shield options. Protecting healthcare workers every day.',
     primaryCta: { label: 'Shop Masks', href: '/products?category=Masks' },
     secondaryCta: { label: 'View All PPE', href: '/products' },
-    bg: 'from-green-900 via-green-800 to-primary',
+    bg: 'from-primary-900 via-primary-800 to-primary',
   },
   {
     heading: 'Protective',
@@ -39,7 +38,7 @@ const heroSlides = [
     description: 'Anti-fog goggles, safety glasses, and full face shields designed for healthcare and industrial environments.',
     primaryCta: { label: 'Shop Eye Protection', href: '/products?category=Eye+Protection' },
     secondaryCta: { label: 'Contact Us', href: '/contact' },
-    bg: 'from-emerald-900 via-green-800 to-green-700',
+    bg: 'from-emerald-900 via-primary-800 to-primary-700',
   },
   {
     heading: 'Full PPE Kits',
@@ -48,7 +47,7 @@ const heroSlides = [
       'Complete head-to-toe protection packages for hospitals, clinics, pharmacies, and industrial workplaces at competitive bulk pricing.',
     primaryCta: { label: 'Browse All Products', href: '/products' },
     secondaryCta: { label: 'Request a Quote', href: '/contact' },
-    bg: 'from-green-800 via-primary to-emerald-700',
+    bg: 'from-primary-800 via-primary to-emerald-700',
   },
 ]
 
@@ -104,11 +103,11 @@ export function HeroCarousel() {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
                       {slide.heading}{' '}
                       <br />
-                      <span className="text-green-200">{slide.highlight}</span>
+                      <span className="text-primary-200">{slide.highlight}</span>
                     </h1>
 
                     {/* Description */}
-                    <p className="text-base md:text-lg text-green-100 mb-8 leading-relaxed max-w-lg">
+                    <p className="text-base md:text-lg text-primary/100 mb-8 leading-relaxed max-w-lg">
                       {slide.description}
                     </p>
 
@@ -117,7 +116,7 @@ export function HeroCarousel() {
                       <Button
                         asChild
                         size="lg"
-                        className="bg-background text-primary hover:bg-green-50 hover:text-primary-foreground border border-primary-foreground/20 font-semibold"
+                        className="bg-background text-primary hover:bg-primary/50 hover:text-primary-foreground border border-primary-foreground/20 font-semibold"
                       >
                         <Link href={slide.primaryCta.href}>
                           {slide.primaryCta.label}{' '}
