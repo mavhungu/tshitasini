@@ -86,7 +86,7 @@ export default function LandingPage() {
       <main className="flex-1 pt-16">
 
         {/* ── Hero Carousel ─────────────────────── */}
-       <HeroCarousel />
+        <HeroCarousel />
 
         {/* ── Features Strip ───────────────────── */}
         <section className="bg-background border-b border-border">
@@ -169,7 +169,7 @@ export default function LandingPage() {
                   href={cat.href}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border hover:border-primary hover:bg-primary/5 transition-all duration-200 group text-center"
                 >
-                  <div className="p-3 rounded-full transition-colors">
+                  <div className="p-3 rounded-full bg-accent group-hover:bg-primary/10 transition-colors">
                     <cat.icon className="h-6 w-6 text-primary" />
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
@@ -203,19 +203,17 @@ export default function LandingPage() {
                   { icon: ShieldCheck, label: 'SABS Compliant' },
                   { icon: Award, label: 'ISO Certified' },
                 ].map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex flex-col items-center gap-1">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div key={label} className="flex flex-col items-center gap-2">
+                    <div className="p-2 rounded-full bg-accent">
+                      <Icon className="h-6 w-6 text-primary" />
+                    </div>
                     <span className="text-sm font-medium text-foreground">
                       {label}
                     </span>
                   </div>
                 ))}
               </div>
-              <Button
-                asChild
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
+              <Button asChild variant="outline">
                 <Link href="/about">Learn More About Us</Link>
               </Button>
             </div>
@@ -223,9 +221,9 @@ export default function LandingPage() {
         </section>
 
         {/* ── CTA Banner ───────────────────────── */}
-        <section className="bg-primary text-primary-foreground py-16">
+        <section className="bg-primary py-16">
           <div className="container mx-auto text-center px-6 sm:px-10 md:px-16">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4 text-primary-foreground">
               Need Bulk Orders for Your Facility?
             </h2>
             <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
@@ -236,7 +234,7 @@ export default function LandingPage() {
             <Button
               asChild
               size="lg"
-              className="bg-muted text-primary font-semibold"
+              className="bg-muted text-primary hover:bg-background/90 font-semibold transition-colors"
             >
               <Link href="/contact">
                 Get In Touch <ArrowRight className="ml-2 h-4 w-4" />
