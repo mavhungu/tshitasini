@@ -40,7 +40,7 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="container mx-auto pt-28 pb-12 flex flex-col items-center justify-center text-center">
-        <div className="p-6 bg-primary/10 rounded-full mb-6">
+        <div className="p-6 rounded-full mb-6">
           <ShoppingBag className="h-14 w-14 text-primary" />
         </div>
         <h2 className="text-2xl font-bold text-foreground mb-2">
