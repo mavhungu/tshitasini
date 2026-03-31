@@ -213,9 +213,9 @@ export function ProductFilters({
               )}
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-80 overflow-y-auto">
-            <SheetHeader>
-              <SheetTitle className="flex items-center gap-2">
+          <SheetContent side="left" className="w-80 bg-card overflow-y-auto px-6 py-6 flex flex-col gap-0">
+            <SheetHeader className="mb-6 p-0">
+              <SheetTitle className="flex items-center gap-2 txt-foreground">
                 <SlidersHorizontal className="h-4 w-4 text-primary" />
                 Filters
               </SheetTitle>
