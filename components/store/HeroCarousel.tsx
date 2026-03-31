@@ -20,8 +20,7 @@ const heroSlides = [
   {
     heading: 'Certified Surgical',
     highlight: 'Gloves & Gowns',
-    description:
-      'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
+    description: 'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
     primaryCta: { label: 'Shop Gloves', href: '/products?category=Gloves' },
     secondaryCta: { label: 'Get a Quote', href: '/contact' },
     bg: 'from-primary/90 via-primary to-green-800',
@@ -29,8 +28,7 @@ const heroSlides = [
   {
     heading: 'Medical-Grade',
     highlight: 'Face Masks & Shields',
-    description:
-      'N95, surgical, and 3-ply masks with full face shield options. Protecting healthcare workers every day.',
+    description: 'N95, surgical, and 3-ply masks with full face shield options. Protecting healthcare workers every day.',
     primaryCta: { label: 'Shop Masks', href: '/products?category=Masks' },
     secondaryCta: { label: 'View All PPE', href: '/products' },
     bg: 'from-green-900 via-green-800 to-primary',
@@ -38,8 +36,7 @@ const heroSlides = [
   {
     heading: 'Protective',
     highlight: 'Eye & Face Equipment',
-    description:
-      'Anti-fog goggles, safety glasses, and full face shields designed for healthcare and industrial environments.',
+    description: 'Anti-fog goggles, safety glasses, and full face shields designed for healthcare and industrial environments.',
     primaryCta: { label: 'Shop Eye Protection', href: '/products?category=Eye+Protection' },
     secondaryCta: { label: 'Contact Us', href: '/contact' },
     bg: 'from-emerald-900 via-green-800 to-green-700',
@@ -93,12 +90,12 @@ export function HeroCarousel() {
             <CarouselItem key={index}>
               <div
                 className={cn(
-                  'relative bg-gradient-to-br text-white min-h-[calc(100vh-4rem)] flex items-center',
+                  'relative bg-gradient-to-br text-background min-h-[calc(100vh-4rem)] flex items-center',
                   slide.bg
                 )}
               >
                 {/* Subtle dot pattern overlay */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,white_1px,transparent_1px)] bg-[length:40px_40px]" />
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,background_1px,transparent_1px)] bg-[length:40px_40px]" />
 
                 <div className="container mx-auto px-6 sm:py-10 md:px-16 lg:px-20 py-12 sm:py-16 md:py-24 relative z-10">
                   <div className="max-w-2xl">
@@ -120,7 +117,7 @@ export function HeroCarousel() {
                       <Button
                         asChild
                         size="lg"
-                        className="bg-white text-primary hover:bg-green-50 font-semibold"
+                        className="bg-background text-primary hover:bg-green-50 hover:text-primary-foreground border border-primary-foreground/20 font-semibold"
                       >
                         <Link href={slide.primaryCta.href}>
                           {slide.primaryCta.label}{' '}
@@ -131,7 +128,7 @@ export function HeroCarousel() {
                         asChild
                         size="lg"
                         variant="outline"
-                        className="border-white text-white hover:bg-white/10 bg-transparent"
+                        className="border-background text-background hover:bg-background/10 bg-transparent"
                       >
                         <Link href={slide.secondaryCta.href}>
                           {slide.secondaryCta.label}
@@ -149,8 +146,8 @@ export function HeroCarousel() {
                           className={cn(
                             'h-1.5 rounded-full transition-all duration-300',
                             i === current
-                              ? 'w-6 bg-white'
-                              : 'w-1.5 bg-white/40 hover:bg-white/60'
+                              ? 'w-6 bg-background'
+                              : 'w-1.5 bg-background/40 hover:bg-background/60'
                           )}
                         />
                       ))}
@@ -159,7 +156,7 @@ export function HeroCarousel() {
                 </div>
 
                 {/* Slide counter */}
-                <div className="absolute bottom-6 right-6 text-white/40 text-xs font-mono hidden md:block">
+                <div className="absolute bottom-6 right-6 text-background/40 text-xs font-mono hidden md:block">
                   {String(current + 1).padStart(2, '0')} /{' '}
                   {String(count).padStart(2, '0')}
                 </div>
@@ -169,8 +166,8 @@ export function HeroCarousel() {
         </CarouselContent>
 
         {/* Navigation arrows */}
-        <CarouselPrevious className="left-4 md:left-8 bg-white/10 hover:bg-white/20 border-white/20 text-white hover:text-white disabled:opacity-30" />
-        <CarouselNext className="right-4 md:right-8 bg-white/10 hover:bg-white/20 border-white/20 text-white hover:text-white disabled:opacity-30" />
+        <CarouselPrevious className="left-4 md:left-8 bg-background/10 hover:bg-background/20 border-background/20 text-background hover:text-background disabled:opacity-30" />
+        <CarouselNext className="right-4 md:right-8 bg-background/10 hover:bg-background/20 border-background/20 text-background hover:text-background disabled:opacity-30" />
       </Carousel>
     </section>
   )
