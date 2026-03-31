@@ -22,7 +22,7 @@ const heroSlides = [
     description: 'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
     primaryCta: { label: 'Shop Gloves', href: '/products?category=Gloves' },
     secondaryCta: { label: 'Get a Quote', href: '/contact' },
-    bg: 'from-primary/90 via-primary to-primary-800',
+    bg: 'from-primary/90 via-primary to-primary/800',
   },
   {
     heading: 'Medical-Grade',
@@ -30,7 +30,7 @@ const heroSlides = [
     description: 'N95, surgical, and 3-ply masks with full face shield options. Protecting healthcare workers every day.',
     primaryCta: { label: 'Shop Masks', href: '/products?category=Masks' },
     secondaryCta: { label: 'View All PPE', href: '/products' },
-    bg: 'from-primary-900 via-primary-800 to-primary',
+    bg: 'from-primary/900 via-primary/800 to-primary',
   },
   {
     heading: 'Protective',
@@ -38,7 +38,7 @@ const heroSlides = [
     description: 'Anti-fog goggles, safety glasses, and full face shields designed for healthcare and industrial environments.',
     primaryCta: { label: 'Shop Eye Protection', href: '/products?category=Eye+Protection' },
     secondaryCta: { label: 'Contact Us', href: '/contact' },
-    bg: 'from-emerald-900 via-primary-800 to-primary-700',
+    bg: 'from-emerald-900 via-primary/800 to-primary/700',
   },
   {
     heading: 'Full PPE Kits',
@@ -47,7 +47,7 @@ const heroSlides = [
       'Complete head-to-toe protection packages for hospitals, clinics, pharmacies, and industrial workplaces at competitive bulk pricing.',
     primaryCta: { label: 'Browse All Products', href: '/products' },
     secondaryCta: { label: 'Request a Quote', href: '/contact' },
-    bg: 'from-primary-800 via-primary to-emerald-700',
+    bg: 'from-primary/800 via-primary to-emerald-700',
   },
 ]
 
