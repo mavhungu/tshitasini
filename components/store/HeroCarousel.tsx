@@ -22,7 +22,7 @@ const heroSlides = [
     description: 'Latex, nitrile, and vinyl options meeting SABS and WHO standards. Supplied to hospitals and clinics across South Africa.',
     primaryCta: { label: 'Shop Gloves', href: '/products?category=Gloves' },
     secondaryCta: { label: 'Get a Quote', href: '/contact' },
-    bg: 'from-primary/90 via-primary to-green-800',
+    bg: '/images/slide-1.jpg',
   },
   {
     heading: 'Medical-Grade',
