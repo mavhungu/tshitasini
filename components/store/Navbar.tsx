@@ -90,9 +90,9 @@ export default function Navbar() {
             {/* Cart */}
             <Link href="/cart">
               <Button
-                variant="ghost"
+                variant="link"
                 size="icon"
-                className="relative"
+                className="relative hover:cursor-pointer"
                 aria-label={`Shopping cart, ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
               >
                 <ShoppingCart className="h-5 w-5" />
