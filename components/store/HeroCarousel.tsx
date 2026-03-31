@@ -129,7 +129,7 @@ export function HeroCarousel() {
                         asChild
                         size="lg"
                         variant="outline"
-                        className="border-background text-background hover:bg-background/10 bg-transparent"
+                        className="border-background text-background hover:bg-background/10 hover:text-primary bg-transparent"
                       >
                         <Link href={slide.secondaryCta.href}>
                           {slide.secondaryCta.label}
