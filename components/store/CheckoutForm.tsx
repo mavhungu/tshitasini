@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
 import { PayPalButtons } from '@paypal/react-paypal-js'
-import { Loader2, CreditCard, Wallet, Zap, BadgeDollarSign } from 'lucide-react'
+import { Loader2, CreditCard, Wallet, Zap, BadgeDollarSign, HandCoins } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -69,7 +69,7 @@ const PAYMENT_OPTIONS = [
     id: 'paystack',
     label: 'Card / EFT / Mobile',
     description: 'All major cards, instant EFT, and mobile money — powered by Paystack',
-    icon: <BadgeDollarSign className="h-5 w-5 shrink-0" style={{ color: '#00C3F7' }} />,
+    icon: <HandCoins className="h-5 w-5 shrink-0" style={{ color: '#00C3F7' }} />,
     badge: { label: 'Paystack', bg: '#00C3F7', text: '#fff' },
     recommended: false,
   },
