@@ -16,11 +16,11 @@ import { prisma } from '@/lib/prisma/client'
 import Autoplay from "embla-carousel-autoplay"
 
 export const metadata: Metadata = {
-  title: 'Tshitasini Enviro Solutions — Quality PPE & Medical Supplies',
+  title: 'VaultSafe Solutions — Quality PPE & Medical Supplies',
   description:
-    'Tshitasini Enviro Solutions supplies certified PPE products including surgery gloves, masks, gowns, and more to healthcare facilities across South Africa.',
+    'VaultSafe Solutions supplies certified PPE products including surgery gloves, masks, gowns, and more to healthcare facilities across South Africa.',
   openGraph: {
-    title: 'Tshitasini Enviro Solutions — Quality PPE & Medical Supplies',
+    title: 'VaultSafe Solutions — Quality PPE & Medical Supplies',
     description:
       'Certified PPE for healthcare facilities and businesses across South Africa.',
     images: [{ url: '/og-image.png' }],
@@ -86,7 +86,7 @@ export default function LandingPage() {
       <main className="flex-1 pt-16">
 
         {/* ── Hero Carousel ─────────────────────── */}
-       <HeroCarousel />
+        <HeroCarousel />
 
         {/* ── Features Strip ───────────────────── */}
         <section className="bg-background border-b border-border">
@@ -192,7 +192,7 @@ export default function LandingPage() {
                 Committed to Safety &amp; Quality
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Tshitasini Enviro Solutions is a proudly South African PPE
+                VaultSafe Solutions is a proudly South African PPE
                 supplier dedicated to providing healthcare facilities, clinics,
                 and businesses with the highest quality protective equipment.
                 We ensure compliance with all relevant safety standards so you

@@ -37,9 +37,9 @@ export default async function Footer() {
             >
               <Leaf className="h-6 w-6 text-primary" />
               <div className="leading-tight">
-                <p>Tshitasini</p>
+                <p>VaultSafe</p>
                 <p className="text-xs font-normal text-muted-foreground">
-                  Enviro Solutions
+                  Solutions
                 </p>
               </div>
             </Link>
@@ -96,18 +96,18 @@ export default async function Footer() {
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                 <span>
-                  123 Main Street, Sandton
+                  190 Scheiding Street
                   <br />
-                  Johannesburg, Gauteng
+                  Pretoria, Gauteng
                 </span>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary shrink-0" />
-                <span>+27 10 000 0000</span>
+                <span>+27 78 667 1901</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <span>info@tshitasini.co.za</span>
+                <span>info@vaultsafe.co.za</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Clock className="h-4 w-4 mt-0.5 text-primary shrink-0" />
@@ -126,10 +126,13 @@ export default async function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>
-            &copy; {await getCurrentYear()} Tshitasini Enviro Solutions. All rights reserved.
+            &copy; {await getCurrentYear()} VaultSafe Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground">Secured by</span>
+            <span className="text-xs font-semibold text-white bg-[#00C3F7] px-2 py-1 rounded">
+              Paystack
+            </span>
             <span className="text-xs font-semibold text-white bg-[#635BFF] px-2 py-1 rounded">
               Stripe
             </span>

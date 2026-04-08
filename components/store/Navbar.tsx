@@ -55,9 +55,9 @@ export default function Navbar() {
           >
             <Leaf className="h-6 w-6 text-primary" />
             <div className="leading-tight">
-              <span>Tshitasini</span>
+              <span>VaultSafe</span>
               <span className="hidden sm:inline text-foreground font-normal text-sm ml-1">
-                Enviro Solutions
+                Solutions
               </span>
             </div>
           </Link>

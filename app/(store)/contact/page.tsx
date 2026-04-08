@@ -6,24 +6,24 @@ import { ContactForm } from '@/components/store/ContactForm'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Tshitasini Enviro Solutions for orders, bulk quotes, product enquiries, or general support.',
+    'Get in touch with VaultSafe Solutions for orders, bulk quotes, product enquiries, or general support.',
 }
 
 const contactDetails = [
   {
     icon: MapPin,
     label: 'Address',
-    lines: ['123 Main Street, Sandton', 'Johannesburg, Gauteng, 2196'],
+    lines: ['190 Scheiding Street', 'Pretoria, Gauteng, 0002'],
   },
   {
     icon: Phone,
     label: 'Phone',
-    lines: ['+27 10 000 0000'],
+    lines: ['+27 78 667 1901'],
   },
   {
     icon: Mail,
     label: 'Email',
-    lines: ['info@tshitasini.co.za'],
+    lines: ['info@VaultSafe.co.za'],
   },
   {
     icon: Clock,

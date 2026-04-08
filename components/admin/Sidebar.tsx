@@ -20,7 +20,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
           <Leaf className="h-5 w-5 text-white" />
         </div>
         <div className="leading-tight">
-          <p className="font-bold text-white text-sm">Tshitasini</p>
+          <p className="font-bold text-white text-sm">VaultSafe</p>
           <p className="text-xs text-zinc-400">Admin Panel</p>
         </div>
       </div>

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.name,
     description: product.description,
     openGraph: {
-      title: `${product.name} | Tshitasini Enviro Solutions`,
+      title: `${product.name} | VaultSafe Enviro Solutions`,
       description: product.description,
       images: product.images[0] ? [{ url: product.images[0] }] : [],
     },
@@ -79,8 +79,7 @@ export default async function ProductDetailPage({ params }: Props) {
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
         aria-label="Back to products catalogue"
       >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Products
+        <ArrowLeft className="h-4 w-6" />
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-16">
@@ -143,6 +142,9 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted-foreground">
               Secure payment via
+            </span>
+            <span className="text-xs font-bold text-white bg-[#00C3F7] px-2 py-1 rounded">
+              Paystack
             </span>
             <span className="text-xs font-bold text-white bg-[#635BFF] px-2 py-1 rounded">
               Stripe

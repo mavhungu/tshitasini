@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card'
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn about Tshitasini Enviro Solutions — a proudly South African PPE supplier committed to quality, compliance, and protecting lives.',
+    'Learn about VaultSafe Solutions — a proudly South African PPE supplier committed to quality, compliance, and protecting lives.',
 }
 
 const values = [
@@ -79,7 +79,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-green-100 text-lg max-w-2xl mx-auto">
             Protecting lives through quality PPE — that is the mission driving
-            everything we do at Tshitasini Enviro Solutions.
+            everything we do at VaultSafe Solutions.
           </p>
         </div>
       </section>
@@ -97,21 +97,21 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Tshitasini Enviro Solutions was founded with a clear purpose:
+                  VaultSafe Solutions was founded with a clear purpose:
                   to make high-quality personal protective equipment accessible
                   to every healthcare facility, clinic, and business across South
                   Africa. We recognised the critical gap in the market for a
                   reliable, local PPE supplier.
                 </p>
                 <p>
-                  Based in Johannesburg, Gauteng, we serve clients nationwide —
+                  Based in Pretoria, Gauteng, we serve clients nationwide —
                   from large hospitals and government facilities to small private
                   practices and industrial workplaces. Our commitment to quality
                   means we source only from certified manufacturers who meet
                   international safety standards.
                 </p>
                 <p>
-                  Today, Tshitasini Enviro Solutions is a trusted name in the
+                  Today, VaultSafe Solutions is a trusted name in the
                   PPE industry, known for consistent quality, competitive pricing,
                   and the kind of service that builds long-term relationships with
                   our clients.
@@ -141,7 +141,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
           <div className="text-center mb-10">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-1">
-              Why Tshitasini
+              Why VaultSafe
             </p>
             <h2 className="text-3xl font-bold text-foreground">Why Choose Us</h2>
           </div>

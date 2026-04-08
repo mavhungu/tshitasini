@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     'Browse our full range of certified PPE products including surgical gloves, masks, gowns, eye protection and more.',
   openGraph: {
-    title: 'Products | Tshitasini Enviro Solutions',
+    title: 'Products | VaultSafe Enviro Solutions',
     description: 'Browse certified PPE for healthcare and safety professionals.',
     images: [{ url: '/og-image.png' }],
   },
