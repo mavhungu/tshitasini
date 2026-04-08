@@ -110,6 +110,7 @@
   --shadow-lg: 0px 2px 0px 0px hsl(197.8537 88.7446% 54.7059% / 0.00), 0px 4px 6px -1px hsl(197.8537 88.7446% 54.7059% / 0.00);
   --shadow-xl: 0px 2px 0px 0px hsl(197.8537 88.7446% 54.7059% / 0.00), 0px 8px 10px -1px hsl(197.8537 88.7446% 54.7059% / 0.00);
   --shadow-2xl: 0px 2px 0px 0px hsl(197.8537 88.7446% 54.7059% / 0.00);
+  --color-hero: linear-gradient(to bottom right, oklch(0.48 0.14 182), oklch(0.38 0.15 157));
 }
 
 @theme inline {
@@ -163,6 +164,7 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+  --color-hero: linear-gradient(to bottom right, oklch(0.74 0.17 181), oklch(0.59 0.19 158));
 }
 
 @layer base {

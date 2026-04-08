@@ -36,7 +36,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white pt-28 pb-12">
+      <section className="bg-hero text-white pt-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
           <p className="text-green-100 text-lg max-w-xl mx-auto">
