@@ -76,7 +76,7 @@ export default function AboutPage() {
       {/* ── Hero ─────────────────────────────── */}
       <section className="bg-[image:var(--color-hero)] py-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
+          <h1 className="text-4xl text-white md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto">
             Protecting lives through quality PPE — that is the mission driving
             everything we do at VaultSafe Solutions.
