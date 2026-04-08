@@ -36,10 +36,10 @@ export default function ContactPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-hero text-white pt-28 pb-12">
+      <section className="bg-[image:var(--color-hero)] py-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-green-100 text-lg max-w-xl mx-auto">
+          <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+          <p className="text-white/80 text-lg max-w-xl mx-auto">
             We would love to hear from you. Reach out for orders, quotes,
             or any general enquiries and we will respond within one business day.
           </p>

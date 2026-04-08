@@ -74,10 +74,10 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-gradient-to-br from-primary/90 to-green-800 text-white py-28 pb-12">
+      <section className="bg-[image:var(--color-hero)] py-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
-          <p className="text-green-100 text-lg max-w-2xl mx-auto">
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
             Protecting lives through quality PPE — that is the mission driving
             everything we do at VaultSafe Solutions.
           </p>
