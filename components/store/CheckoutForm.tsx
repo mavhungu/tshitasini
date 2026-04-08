@@ -73,24 +73,24 @@ const PAYMENT_OPTIONS = [
     badge: { label: 'Paystack', bg: '#00C3F7', text: '#fff' },
     recommended: false,
   },
-  {
-    value: 'STRIPE',
-    id: 'stripe',
-    label: 'Pay with Card',
-    description: 'Visa, Mastercard, Amex — secured by Stripe',
-    icon: <CreditCard className="h-5 w-5 text-primary shrink-0" />,
-    badge: { label: 'Stripe', bg: '#635BFF', text: '#fff' },
-    recommended: false,
-  },
-  {
-    value: 'PAYPAL',
-    id: 'paypal',
-    label: 'Pay with PayPal',
-    description: 'Pay using your PayPal account or balance',
-    icon: <Wallet className="h-5 w-5 text-primary shrink-0" />,
-    badge: { label: 'PayPal', bg: '#003087', text: '#fff' },
-    recommended: false,
-  },
+  // {
+  //   value: 'STRIPE',
+  //   id: 'stripe',
+  //   label: 'Pay with Card',
+  //   description: 'Visa, Mastercard, Amex — secured by Stripe',
+  //   icon: <CreditCard className="h-5 w-5 text-primary shrink-0" />,
+  //   badge: { label: 'Stripe', bg: '#635BFF', text: '#fff' },
+  //   recommended: false,
+  // },
+  // {
+  //   value: 'PAYPAL',
+  //   id: 'paypal',
+  //   label: 'Pay with PayPal',
+  //   description: 'Pay using your PayPal account or balance',
+  //   icon: <Wallet className="h-5 w-5 text-primary shrink-0" />,
+  //   badge: { label: 'PayPal', bg: '#003087', text: '#fff' },
+  //   recommended: false,
+  // },
 ] as const
 
 export function CheckoutForm() {

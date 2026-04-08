@@ -3,7 +3,7 @@ import { CheckoutForm } from '@/components/store/CheckoutForm'
 
 export const metadata: Metadata = {
   title: 'Checkout',
-  description: 'Complete your order from Tshitasini Enviro Solutions.',
+  description: 'Complete your order from VaultSafe Enviro Solutions.',
 }
 
 export default function CheckoutPage() {
