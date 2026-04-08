@@ -49,7 +49,7 @@ type CheckoutFormData = z.output<typeof checkoutSchema>
 // Reusable field error display
 function FieldError({ message }: { message?: string }) {
   if (!message) return null
-  return <p className="text-xs text-destructive mt-1">{message}</p>
+    return <p className="text-xs text-destructive mt-1">{message}</p>
 }
 
 // Payment option definitions 
