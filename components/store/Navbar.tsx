@@ -53,7 +53,8 @@ export default function Navbar() {
             className="flex items-center gap-2 font-bold text-xl text-primary"
             aria-label="Tshitasini Enviro Solutions home"
           >
-            <Leaf className="h-6 w-6 text-primary" />
+            {/*<Leaf className="h-6 w-6 text-primary" />*/}
+            <VaultSafeIcon className="h-6 w-6 text-primary" />
             <div className="leading-tight">
               <span>VaultSafe</span>
               <span className="hidden sm:inline text-foreground font-normal text-sm ml-1">
