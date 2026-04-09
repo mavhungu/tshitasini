@@ -146,12 +146,12 @@ export default async function ProductDetailPage({ params }: Props) {
             <span className="text-xs font-bold text-white bg-[#00C3F7] px-2 py-1 rounded">
               Paystack
             </span>
-            <span className="text-xs font-bold text-white bg-[#635BFF] px-2 py-1 rounded">
+            {/* <span className="text-xs font-bold text-white bg-[#635BFF] px-2 py-1 rounded">
               Stripe
             </span>
             <span className="text-xs font-bold text-white bg-[#003087] px-2 py-1 rounded">
               PayPal
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
