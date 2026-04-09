@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Leaf, Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { VaultSafeShieldMedicalCrossIcon } from '@/components/icons/VaultSafeLogo'
 import { Separator } from '@/components/ui/separator'
 
 const quickLinks = [
@@ -35,7 +36,7 @@ export default async function Footer() {
               href="/"
               className="flex items-center gap-2 font-bold text-lg text-foreground"
             >
-              <Leaf className="h-6 w-6 text-primary" />
+              <VaultSafeShieldMedicalCrossIcon className="h-6 w-6 text-primary" />
               <div className="leading-tight">
                 <p>VaultSafe</p>
                 <p className="text-xs font-normal text-muted-foreground">
@@ -133,12 +134,12 @@ export default async function Footer() {
             <span className="text-xs font-semibold text-white bg-[#00C3F7] px-2 py-1 rounded">
               Paystack
             </span>
-            <span className="text-xs font-semibold text-white bg-[#635BFF] px-2 py-1 rounded">
+            {/* <span className="text-xs font-semibold text-white bg-[#635BFF] px-2 py-1 rounded">
               Stripe
             </span>
             <span className="text-xs font-semibold text-white bg-[#003087] px-2 py-1 rounded">
               PayPal
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
