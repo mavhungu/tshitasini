@@ -7,6 +7,7 @@ import { ShoppingCart, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { VaultSafeIcon } from '@/components/icons/VaultSafeLogo'
 import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/store/cartStore'
 
