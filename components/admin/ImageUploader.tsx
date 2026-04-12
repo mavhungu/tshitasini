@@ -83,60 +83,117 @@ export function ImageUploader({ value, onChange }: ImageUploaderProps) {
     }
   }
 
+  // const processFiles = async (files: FileList | File[]) => {
+  //   const fileArray = Array.from(files)
+  //   const remaining = MAX_IMAGES - value.length - uploading.length
+
+  //   if (remaining <= 0) {
+  //     toast.error(`Maximum ${MAX_IMAGES} images allowed.`)
+  //     return
+  //   }
+
+  //   const toProcess = fileArray.slice(0, remaining)
+
+  //   if (fileArray.length > remaining) {
+  //     toast.warning(
+  //       `Only ${remaining} more image${remaining !== 1 ? 's' : ''} can be added.`
+  //     )
+  //   }
+
+  //   // Add all files to uploading state with instant previews
+  //   const newUploading: UploadingFile[] = toProcess.map((file) => ({
+  //     id: `${Date.now()}-${Math.random()}`,
+  //     previewUrl: URL.createObjectURL(file),
+  //     progress: 0,
+  //   }))
+
+  //   setUploading((prev) => [...prev, ...newUploading])
+
+  //   // Upload each file concurrently
+  //   await Promise.all(
+  //     toProcess.map(async (file, i) => {
+  //       const tempId = newUploading[i].id
+  //       try {
+  //         const blobUrl = await uploadFile(file, tempId)
+
+  //         // Add blob URL to form state and remove from uploading
+  //         onChange([...value, blobUrl])
+  //         setUploading((prev) => prev.filter((u) => u.id !== tempId))
+
+  //         // Revoke the local object URL to free memory
+  //         URL.revokeObjectURL(newUploading[i].previewUrl)
+  //       } catch (error) {
+  //         const message =
+  //           error instanceof Error ? error.message : 'Upload failed'
+  //         setUploading((prev) =>
+  //           prev.map((u) =>
+  //             u.id === tempId ? { ...u, error: message, progress: 0 } : u
+  //           )
+  //         )
+  //         toast.error(`Failed to upload ${file.name}`, {
+  //           description: message,
+  //         })
+  //       }
+  //     })
+  //   )
+  // }
+
   const processFiles = async (files: FileList | File[]) => {
-    const fileArray = Array.from(files)
-    const remaining = MAX_IMAGES - value.length - uploading.length
+  const fileArray = Array.from(files)
+  const remaining = MAX_IMAGES - value.length - uploading.length
 
-    if (remaining <= 0) {
-      toast.error(`Maximum ${MAX_IMAGES} images allowed.`)
-      return
-    }
+  if (remaining <= 0) {
+    toast.error(`Maximum ${MAX_IMAGES} images allowed.`)
+    return
+  }
 
-    const toProcess = fileArray.slice(0, remaining)
+  const toProcess = fileArray.slice(0, remaining)
 
-    if (fileArray.length > remaining) {
-      toast.warning(
-        `Only ${remaining} more image${remaining !== 1 ? 's' : ''} can be added.`
-      )
-    }
-
-    // Add all files to uploading state with instant previews
-    const newUploading: UploadingFile[] = toProcess.map((file) => ({
-      id: `${Date.now()}-${Math.random()}`,
-      previewUrl: URL.createObjectURL(file),
-      progress: 0,
-    }))
-
-    setUploading((prev) => [...prev, ...newUploading])
-
-    // Upload each file concurrently
-    await Promise.all(
-      toProcess.map(async (file, i) => {
-        const tempId = newUploading[i].id
-        try {
-          const blobUrl = await uploadFile(file, tempId)
-
-          // Add blob URL to form state and remove from uploading
-          onChange([...value, blobUrl])
-          setUploading((prev) => prev.filter((u) => u.id !== tempId))
-
-          // Revoke the local object URL to free memory
-          URL.revokeObjectURL(newUploading[i].previewUrl)
-        } catch (error) {
-          const message =
-            error instanceof Error ? error.message : 'Upload failed'
-          setUploading((prev) =>
-            prev.map((u) =>
-              u.id === tempId ? { ...u, error: message, progress: 0 } : u
-            )
-          )
-          toast.error(`Failed to upload ${file.name}`, {
-            description: message,
-          })
-        }
-      })
+  if (fileArray.length > remaining) {
+    toast.warning(
+      `Only ${remaining} more image${remaining !== 1 ? 's' : ''} can be added.`
     )
   }
+
+  const newUploading: UploadingFile[] = toProcess.map((file) => ({
+    id: `${Date.now()}-${Math.random()}`,
+    previewUrl: URL.createObjectURL(file),
+    progress: 0,
+  }))
+
+  setUploading((prev) => [...prev, ...newUploading])
+
+  // Collect all successful URLs, then call onChange once
+  const results = await Promise.allSettled(
+    toProcess.map(async (file, i) => {
+      const tempId = newUploading[i].id
+      try {
+        const blobUrl = await uploadFile(file, tempId)
+        setUploading((prev) => prev.filter((u) => u.id !== tempId))
+        URL.revokeObjectURL(newUploading[i].previewUrl)
+        return blobUrl
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Upload failed'
+        setUploading((prev) =>
+          prev.map((u) =>
+            u.id === tempId ? { ...u, error: message, progress: 0 } : u
+          )
+        )
+        toast.error(`Failed to upload ${file.name}`, { description: message })
+        throw error
+      }
+    })
+  )
+
+  // Gather only successful URLs and append them all at once
+  const successfulUrls = results
+    .filter((r): r is PromiseFulfilledResult<string> => r.status === 'fulfilled')
+    .map((r) => r.value)
+
+  if (successfulUrls.length > 0) {
+    onChange([...value, ...successfulUrls])
+  }
+}
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
