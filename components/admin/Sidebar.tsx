@@ -89,7 +89,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
         </form>
       </div>
 
-      </div>
+      {/*</div>*/}
     </aside>
   )
 }
