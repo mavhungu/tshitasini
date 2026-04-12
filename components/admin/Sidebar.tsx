@@ -31,7 +31,7 @@ export function Sidebar({ user }: { user: SidebarUser }) {
       </div>
 
       {/* Admin user card */}
-      <div className="shrink-0 border-t border-zinc-700/50">
+      {/*<div className="shrink-0 border-t border-zinc-700/50">*/}
         {/* <div className="flex items-center gap-3 px-4 py-4">
           <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
             {user.avatarInitial}
@@ -46,9 +46,9 @@ export function Sidebar({ user }: { user: SidebarUser }) {
           </div>
         </div> */}
 
-        <div className="px-3 py-4">
+      {/*<div className="px-3 py-4">*/}
           {/* Logout */}
-          <form action={signOutAction} >
+          {/*<form action={signOutAction} >
             <button
               type="submit"
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
@@ -57,7 +57,37 @@ export function Sidebar({ user }: { user: SidebarUser }) {
               Sign Out
             </button>
           </form>
-        </div>
+        </div>*/}
+
+      {/* Bottom: user card + sign out — pinned, never scrolls */}
+      <div className="shrink-0 border-t border-zinc-700/50 p-3">
+        <form action={signOutAction}>
+          <button
+            type="submit"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors group"
+          >
+            {/* Avatar circle */}
+            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
+              {user.avatarInitial}
+            </div>
+ 
+            {/* Name + email */}
+            <div className="flex-1 min-w-0 text-left">
+              <p className="text-xs font-medium text-white truncate leading-tight">
+                {user.firstName
+                  ? `${user.firstName} ${user.lastName}`
+                  : user.email}
+              </p>
+              <p className="text-[11px] text-zinc-400 truncate leading-tight mt-0.5">
+                {user.email}
+              </p>
+            </div>
+ 
+            {/* Log out icon — subtle until hovered */}
+            <LogOut className="h-4 w-4 shrink-0 text-zinc-500 group-hover:text-red-400 transition-colors" />
+          </button>
+        </form>
+      </div>
 
       </div>
     </aside>
