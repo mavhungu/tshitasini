@@ -131,12 +131,12 @@ const products = [
 // ─────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log("🌱  Starting database seed…");
+  console.log("Starting database seed…");
 
   // Wipe existing products so the seed is idempotent
   const deleted = await prisma.product.deleteMany();
   if (deleted.count > 0) {
-    console.log(`   ↳ Cleared ${deleted.count} existing product(s).`);
+    console.log(`Cleared ${deleted.count} existing product(s).`);
   }
 
   for (const data of products) {
@@ -148,15 +148,15 @@ async function main() {
         isActive: true,
       },
     });
-    console.log(`   ✔ Created: ${product.name} [${product.id}]`);
+    console.log(`Created: ${product.name} [${product.id}]`);
   }
 
-  console.log(`\n✅  Seeded ${products.length} products successfully.`);
+  console.log(`\nSeeded ${products.length} products successfully.`);
 }
 
 // main()
 //   .catch((err) => {
-//     console.error("❌  Seed failed:", err);
+//     console.error("Seed failed:", err);
 //     process.exit(1);
 //   })
 //   .finally(async () => {
