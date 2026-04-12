@@ -1,7 +1,8 @@
 import { Suspense } from 'react'
 import { withAuth } from '@workos-inc/authkit-nextjs'
 import { redirect } from 'next/navigation'
-import { Sidebar } from '@/components/admin/Sidebar'
+// import { Sidebar } from '@/components/admin/Sidebar'
+import { Sidebar } from '@/components/admin/NewSidebar'
 import { SidebarMobile } from '@/components/admin/SidebarMobile'
 import { TopHeader } from '@/components/admin/TopHeader'
 
