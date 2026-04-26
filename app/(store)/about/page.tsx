@@ -74,7 +74,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-[image:var(--color-hero)] py-28 pb-12">
+      {/* <section className="bg-[image:var(--color-hero)] py-28 pb-12">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
           <h1 className="text-4xl text-white md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto">
@@ -82,6 +82,48 @@ export default function AboutPage() {
             everything we do at VaultSafe Solutions.
           </p>
         </div>
+      </section> */}
+      <section className="relative overflow-hidden py-32 pb-20 bg-background">
+
+        <div className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, oklch(from var(--primary) l c h / 0.35) 0%, transparent 70%)',
+            filter: 'blur(90px)',
+          }}
+        />
+
+        <div className="pointer-events-none absolute -right-40 top-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, oklch(from var(--primary) l c h / 0.25) 0%, transparent 70%)',
+            filter: 'blur(90px)',
+          }}
+        />
+
+        <div className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(oklch(from var(--primary) l c h / 0.08) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px"
+          style={{
+            background: 'linear-gradient(to right, transparent, oklch(from var(--primary) l c h / 0.4), transparent)',
+          }}
+        />
+
+        {/* ── Text content ── */}
+        <div className="relative z-10 container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
+          <h1 className="mb-5 text-4xl font-bold tracking-tight leading-[1.1] md:text-5xl lg:text-6xl text-foreground">
+            About Us
+          </h1>
+
+          <p className="mx-auto max-w-lg text-base leading-relaxed md:text-lg text-muted-foreground">
+            Protecting lives through quality PPE — that is the mission driving
+            everything we do at VaultSafe Solutions.
+          </p>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-muted to-transparent"/>
       </section>
 
       {/* ── Our Story ────────────────────────── */}
