@@ -36,14 +36,62 @@ export default function ContactPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────── */}
-      <section className="bg-[image:var(--color-hero)] py-28 pb-12">
-        <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
-          <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-white/80 text-lg max-w-xl mx-auto">
+            <section className="relative overflow-hidden bg-[#060c16] py-32 pb-20">
+
+        {/* Atmospheric glow — left arc */}
+        <div
+          className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full opacity-30"
+          style={{
+            background:
+              'radial-gradient(circle, #10b981 0%, #065f46 35%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+
+        {/* Atmospheric glow — right arc */}
+        <div
+          className="pointer-events-none absolute -right-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full opacity-25"
+          style={{
+            background:
+              'radial-gradient(circle, #10b981 0%, #065f46 35%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+
+        {/* Subtle dot-grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              'radial-gradient(rgba(16,185,129,0.07) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
+
+          {/* Pill badge — mirrors Framesports "Careers" badge */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="text-xs font-medium tracking-widest text-white/70 uppercase">
+              Contact Us
+            </span>
+          </div>
+
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5 leading-[1.1]">
+            Get In Touch
+          </h1>
+
+          <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
             We would love to hear from you. Reach out for orders, quotes,
             or any general enquiries and we will respond within one business day.
           </p>
+
         </div>
+
+        {/* Bottom fade into the muted section below */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-muted to-transparent" />
       </section>
 
       {/* ── Main Content ─────────────────────── */}
