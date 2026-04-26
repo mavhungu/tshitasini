@@ -35,71 +35,109 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <>
-      {/* ── Hero ─────────────────────────────── */}
-            <section className="relative overflow-hidden bg-[#060c16] py-32 pb-20">
+      {/* ── Hero ─────────────────────────────────────────────────────────────
+          bg-background  →  oklch(1 0 0)   in light  (pure white)
+                         →  oklch(0 0 0)   in dark   (pure black)
+          All glow / dot-grid colours reference --primary (hue 235, blue-teal),
+          so they shift automatically with the theme. No dark: variants needed.
+      ──────────────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden py-32 pb-20 bg-background">
 
-        {/* Atmospheric glow — left arc */}
+        {/* Atmospheric glow — left
+            Uses --primary via an inline CSS variable reference so it stays
+            in sync with your oklch(0.72 0.14 235) primary in both modes.     */}
         <div
-          className="pointer-events-none absolute -left-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full opacity-30"
+          className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2
+                     h-[520px] w-[520px] rounded-full"
           style={{
             background:
-              'radial-gradient(circle, #10b981 0%, #065f46 35%, transparent 70%)',
-            filter: 'blur(80px)',
+              'radial-gradient(circle, oklch(from var(--primary) l c h / 0.35) 0%, transparent 70%)',
+            filter: 'blur(90px)',
           }}
         />
 
-        {/* Atmospheric glow — right arc */}
+        {/* Atmospheric glow — right */}
         <div
-          className="pointer-events-none absolute -right-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full opacity-25"
+          className="pointer-events-none absolute -right-40 top-1/2 -translate-y-1/2
+                     h-[520px] w-[520px] rounded-full"
           style={{
             background:
-              'radial-gradient(circle, #10b981 0%, #065f46 35%, transparent 70%)',
-            filter: 'blur(80px)',
+              'radial-gradient(circle, oklch(from var(--primary) l c h / 0.25) 0%, transparent 70%)',
+            filter: 'blur(90px)',
           }}
         />
 
-        {/* Subtle dot-grid overlay */}
+        {/* Dot-grid texture — primary colour at low opacity */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              'radial-gradient(rgba(16,185,129,0.07) 1px, transparent 1px)',
+              'radial-gradient(oklch(from var(--primary) l c h / 0.08) 1px, transparent 1px)',
             backgroundSize: '28px 28px',
           }}
         />
 
-        {/* Content */}
+        {/* Hairline top accent — uses --border token */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px"
+          style={{
+            background:
+              'linear-gradient(to right, transparent, oklch(from var(--primary) l c h / 0.4), transparent)',
+          }}
+        />
+
+        {/* ── Text content ── */}
         <div className="relative z-10 container mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
 
-          {/* Pill badge — mirrors Framesports "Careers" badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="text-xs font-medium tracking-widest text-white/70 uppercase">
+          {/* Pill badge — bg-accent / text-accent-foreground are already
+              the correct tinted surface in both modes per your globals.css   */}
+          <div
+            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5
+                       border border-border bg-accent text-accent-foreground
+                       backdrop-blur-sm"
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-primary"
+            />
+            <span className="text-xs font-medium tracking-widest uppercase select-none">
               Contact Us
             </span>
           </div>
 
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5 leading-[1.1]">
+          {/* Heading — text-foreground switches white ↔ dark automatically */}
+          <h1
+            className="mb-5 text-4xl font-bold tracking-tight leading-[1.1]
+                       md:text-5xl lg:text-6xl text-foreground"
+          >
             Get In Touch
           </h1>
 
-          <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
+          {/* Subtext — text-muted-foreground is already lower-contrast in both modes */}
+          <p
+            className="mx-auto max-w-lg text-base leading-relaxed
+                       md:text-lg text-muted-foreground"
+          >
             We would love to hear from you. Reach out for orders, quotes,
             or any general enquiries and we will respond within one business day.
           </p>
 
         </div>
 
-        {/* Bottom fade into the muted section below */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-muted to-transparent" />
+        {/* Bottom fade — from-muted resolves to your --muted token:
+            light → oklch(0.9434 …)   dark → oklch(0.2090 0 0)
+            Matches the bg-muted section below perfectly in both modes.       */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16
+                     bg-gradient-to-t from-muted to-transparent"
+        />
       </section>
 
-      {/* ── Main Content ─────────────────────── */}
+      {/* ── Main Content ─────────────────────────────────────────────────── */}
       <section className="bg-muted py-16">
         <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-            {/* Info + Map */}
+            {/* Contact info card */}
             <div className="space-y-4">
               <Card>
                 <CardContent className="p-6 space-y-5">
@@ -112,7 +150,10 @@ export default function ContactPage() {
                         <item.icon className="h-4 w-4 text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+                        <p
+                          className="text-xs font-semibold text-muted-foreground
+                                     uppercase tracking-wider mb-1"
+                        >
                           {item.label}
                         </p>
                         {item.lines.map((line) => (
@@ -125,22 +166,9 @@ export default function ContactPage() {
                   ))}
                 </CardContent>
               </Card>
-
-              {/* Map placeholder */}
-              {/* <Card className="overflow-hidden">
-                <div className="bg-muted h-48 flex flex-col items-center justify-center text-muted-foreground gap-2">
-                  <MapPin className="h-8 w-8 text-primary" />
-                  <p className="text-sm font-medium text-foreground">
-                    Sandton, Johannesburg
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Gauteng, South Africa
-                  </p>
-                </div>
-              </Card> */}
             </div>
 
-            {/* Form */}
+            {/* Form card */}
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-6 md:p-8">
